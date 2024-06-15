@@ -1,21 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
+
 import { useSplashScreen } from "../../hooks/useSplashScreen";
 
 export function Main() {
     const { appIsReady, onLayoutRootView } = useSplashScreen();
 
     if (!appIsReady) {
-        return null;
-      }
+      return null;
+    }
 
     return (
-        <View
-            style={styles.container}
-            onLayout={onLayoutRootView}
-        >
-            <Text>Hello World!</Text>
-        </View>
-    )
+      <View
+          style={styles.container}
+          onLayout={onLayoutRootView}
+      >
+        <Text style={styles.title}>
+          Hello World!
+        </Text>
+      </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -25,5 +28,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    title: {
+      fontFamily: 'GeneralSans-600'
+    }
   });
   
