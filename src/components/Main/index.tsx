@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
+import { SignIn } from "../../screens/SignIn";
 import { useSplashScreen } from "../../hooks/useSplashScreen";
+
 import { Container } from "./styles";
 
 export function Main() {
@@ -12,9 +14,7 @@ export function Main() {
 
     return (
       <Container onLayout={onLayoutRootView} >
-        <Text style={styles.title}>
-          Hello World!
-        </Text>
+        <SignIn />
       </Container>
     );
 }
