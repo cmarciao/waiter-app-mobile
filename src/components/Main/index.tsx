@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { useSplashScreen } from "../../hooks/useSplashScreen";
+import { Container } from "./styles";
 
 export function Main() {
     const { appIsReady, onLayoutRootView } = useSplashScreen();
@@ -10,24 +11,15 @@ export function Main() {
     }
 
     return (
-      <View
-          style={styles.container}
-          onLayout={onLayoutRootView}
-      >
+      <Container onLayout={onLayoutRootView} >
         <Text style={styles.title}>
           Hello World!
         </Text>
-      </View>
+      </Container>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
     title: {
       fontFamily: 'GeneralSans-600'
     }
