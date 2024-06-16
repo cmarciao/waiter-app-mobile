@@ -5,18 +5,26 @@ export const Container = styled.View`
     padding: 0 32px;
 `;
 
-export const Title = styled.View`
-    align-items: center;
-    margin-top: 194px;
-`;
-
-export const Form = styled.View`
+export const Content = styled.View`
     flex: 1;
     justify-content: space-between;
-    margin-top: 118px;
-    margin-bottom: 16px;
+    padding-bottom: 16px;
+`;
+
+export const Title = styled.View`
+    align-items: center;
+    flex: 1.5;
+    justify-content: flex-end;
 `;
 
 export const Fields = styled.View`
+    flex: 2;
+    margin-top: 48px;
+    justify-content: center;
     gap: 24px;
+`;
+
+export const SubmitContent = styled.View`
+    flex: 1;
+    justify-content: flex-end;
 `;
