@@ -10,6 +10,7 @@ import { Container, Content, Fields, SubmitContent, Title } from "./styles";
 
 export function SignIn() {
     const {
+        isSignIng,
         passwordInputRef,
         control,
         errors,
@@ -68,7 +69,7 @@ export function SignIn() {
                 <SubmitContent>
                     <Button
                         onPress={handleSignIn}
-                        disabled={hasErrorInForm}
+                        disabled={hasErrorInForm || isSignIng}
                     >
                         Fazer login
                     </Button>
