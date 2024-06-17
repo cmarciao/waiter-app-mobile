@@ -10,6 +10,7 @@ import { ResponseError } from '../../types/ResponseError';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { storageNames } from "../../constants/storage-names";
 import StorageService from "../../services/storage/StorageService";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const signInSchema =  z.object({
     email: z.string({ message: 'Please, type your email.' }).email('Invalid email.'),
@@ -18,7 +19,7 @@ const signInSchema =  z.object({
 
 type SignInSchema = z.infer<typeof signInSchema>
 
-export function useSignIn() {
+export function useSignIn(navigation: NativeStackNavigationProp<{}>) {
     const passwordInputRef = useRef<TextInput>();
 
     const { control, handleSubmit, formState: { errors  } } = useForm<SignInSchema>({
@@ -56,6 +57,8 @@ export function useSignIn() {
             text1: 'Welcome to WaiterApp.',
             text2: 'Have a good appetite!'
         });
+
+        navigation.replace('loading' as never, undefined as never);
     });
 
     const hasErrorInForm = Object.keys(errors).length > 0;

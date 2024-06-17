@@ -5,10 +5,13 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
 import { useSignIn } from "./useSignIn";
+import { NativeStackScreenProps  } from '@react-navigation/native-stack'
 
 import { Container, Content, Fields, SubmitContent, Title } from "./styles";
 
-export function SignIn() {
+type SignInProps = NativeStackScreenProps<{}>;
+
+export function SignIn({ navigation }: SignInProps) {
     const {
         isSignIng,
         passwordInputRef,
@@ -16,7 +19,7 @@ export function SignIn() {
         errors,
         handleSignIn,
         hasErrorInForm
-    } = useSignIn();
+    } = useSignIn(navigation);
 
     return (
         <Container>
@@ -38,6 +41,7 @@ export function SignIn() {
                                 placeholder="Seu e-mail de acesso"
                                 onChangeText={onChange}
                                 value={value}
+                                autoCapitalize="none"
                                 errorMessage={errors.email?.message}
                                 cursorColor={'#D73035'}
                                 returnKeyType="next"
@@ -58,6 +62,7 @@ export function SignIn() {
                                 onChangeText={onChange}
                                 value={value}
                                 cursorColor={'#D73035'}
+                                autoCapitalize="none"
                                 errorMessage={errors.password?.message}
                                 returnKeyType="done"
                                 onSubmitEditing={handleSignIn}
