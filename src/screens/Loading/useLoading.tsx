@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { sleep } from "../../utils/sleep";
+import Toast from "react-native-toast-message";
 
-export function useLoading() {
+export function useLoading(navigation: NativeStackNavigationProp<{}>) {
     const spinAnim = useRef(new Animated.Value(0));
 
     const interpolateRotation = spinAnim.current.interpolate({
@@ -25,6 +28,15 @@ export function useLoading() {
             })
         ).start();
     });
+
+    useEffect(() => {
+        async function mockedLoad() {
+            await sleep(1000 * 3);
+            navigation.replace('home' as never , undefined as never);
+        }
+
+        mockedLoad();
+    }, [])
 
     return {
         animatedStyle

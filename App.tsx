@@ -10,6 +10,7 @@ export default function App() {
         <Main />
         <Toast
           topOffset={(Bar.currentHeight || 0) + 20}
+          visibilityTime={1000 * 3}
         />
 
         <StatusBar style="dark" />

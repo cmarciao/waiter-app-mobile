@@ -1,5 +1,6 @@
 import { Animated } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Text } from "../../components/Text";
 import { LoadingIcon } from "../../components/Icons/LoadingIcon";
@@ -7,8 +8,10 @@ import { useLoading } from "./useLoading";
 
 import { Container, Subtitle, Title } from "./styles";
 
-export function Loading() {
-    const { animatedStyle } = useLoading();
+type SignInProps = NativeStackScreenProps<{}>;
+
+export function Loading({ navigation }: SignInProps) {
+    const { animatedStyle } = useLoading(navigation);
 
     return (
         <Container>
