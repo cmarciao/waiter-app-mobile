@@ -1,23 +1,20 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { SignIn } from '../screens/SignIn';
-import { Loading } from '../screens/Loading';
-import { Home } from '../screens/Home';
+import { AuthRoutes } from './auth.routes';
+import { PublicRoutes } from './public.routes';
 
-const Stack = createNativeStackNavigator();
+import { useAuth } from '../hooks/useAuth';
 
 export function Routes() {
+    const { isSigned } = useAuth();
+
     return (
         <NavigationContainer>
-            <Stack.Navigator
-                initialRouteName='sign-in'
-                screenOptions={{ headerShown: false }}
-            >
-                <Stack.Screen name='sign-in' component={SignIn}/>
-                <Stack.Screen name='loading' component={Loading}/>
-                <Stack.Screen name='home' component={Home}/>
-            </Stack.Navigator>
+            {isSigned ? (
+                <AuthRoutes />
+            ): (
+                <PublicRoutes />
+            )}
         </NavigationContainer>
     )
 }

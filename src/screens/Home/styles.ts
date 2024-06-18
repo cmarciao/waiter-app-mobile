@@ -11,3 +11,9 @@ export const Title = styled.View`
     align-items: center;
     gap: 4px;
 `;
+
+export const LogoutButton = styled.Pressable`
+    position: absolute;
+    top: 16px;
+    left: 16px;
+`;

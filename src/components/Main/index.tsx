@@ -7,6 +7,7 @@ import { AsyncStorageService } from "../../services/storage/AsyncStorageService"
 
 import { useSplashScreen } from "../../hooks/useSplashScreen";
 import { Container } from "./styles";
+import { AuthProvider } from "../../contexts/AuthContext";
 
 const queryClient = new QueryClient();
 StorageService.initialize(new AsyncStorageService());
@@ -21,7 +22,9 @@ export function Main() {
     return (
       <QueryClientProvider client={queryClient}>
         <Container onLayout={onLayoutRootView} >
+          <AuthProvider>
             <Routes />
+          </AuthProvider>
         </Container>
       </QueryClientProvider>
     );

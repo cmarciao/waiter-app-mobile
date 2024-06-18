@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { ResponseError } from "../types/ResponseError";
 import { api } from "./utils/api";
 
-type SignInRequest = {
+export type SignInRequest = {
     email: string;
     password: string;
 }
@@ -12,7 +12,7 @@ export type SignInResponse = {
     refreshToken: string;
 };
 
-type Response = SignInResponse | ResponseError;
+export type Response = SignInResponse | ResponseError;
 
 class AuthService {
     async signIn(params: SignInRequest): Promise<Response> {

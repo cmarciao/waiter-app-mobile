@@ -1,7 +1,13 @@
+import { SimpleLineIcons } from "@expo/vector-icons";
+
 import { Text } from "../../components/Text";
-import { Container, Title } from "./styles";
+import { useAuth } from "../../hooks/useAuth";
+
+import { Container, LogoutButton, Title } from "./styles";
 
 export function Home() {
+    const { signOut } = useAuth();
+
     return (
         <Container>
             <Title>
@@ -10,6 +16,10 @@ export function Home() {
                     WAITER <Text size={32}>APP</Text>
                 </Text>
             </Title>
+
+            <LogoutButton onPress={signOut}>
+                <SimpleLineIcons name="logout" color="#000" size={28} />
+            </LogoutButton>
         </Container>
     )
 }

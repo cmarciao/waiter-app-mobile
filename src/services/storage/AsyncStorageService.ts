@@ -9,7 +9,11 @@ export class AsyncStorageService implements IStorageService {
         const data = await AsyncStorage.getItem(key);
 
         if(data) {
-            return JSON.parse(data);
+            try {
+                return JSON.parse(data) as T;
+            } catch {
+                return data as T;
+            }
         }
 
         return null;
