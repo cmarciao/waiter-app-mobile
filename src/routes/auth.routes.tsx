@@ -8,17 +8,21 @@ import { Profile } from "../screens/Profile";
 import { TabItem } from "../components/TabItem";
 import { OrdersIcon } from "../components/Icons/OrdersIcons";
 import { ProfileIcon } from "../components/Icons/ProfileIcon";
+import { useOrder } from "../hooks/useOrder";
 
 const Tab = createBottomTabNavigator();
 
 export function AuthRoutes() {
+    const { table } = useOrder();
+
     return (
         <Tab.Navigator
             initialRouteName="home"
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
-                    height: 72
+                    height: !table ? 72 : 0,
+                    display: !table ? 'flex' : 'none'
                 }
             }}
         >

@@ -1,25 +1,36 @@
-import { SimpleLineIcons } from "@expo/vector-icons";
+import { CategoriesList } from "./components/CategoriesList";
 
+import { Container } from "./styles";
+import { Header } from "./components/Header";
+import { ProductsList } from "./components/ProductsList";
+import { StatusBar } from "expo-status-bar";
 import { Text } from "../../components/Text";
-import { useAuth } from "../../hooks/useAuth";
+import { useOrder } from "../../hooks/useOrder";
+import { Cart } from "./components/Cart";
 
-import { Container, LogoutButton, Title } from "./styles";
+// import { SimpleLineIcons } from "@expo/vector-icons";
+// import { useAuth } from "../../hooks/useAuth";
 
 export function Home() {
-    const { signOut } = useAuth();
+    // const { signOut } = useAuth();
+    const { table } = useOrder();
 
     return (
         <Container>
-            <Title>
-                <Text size={18}>Bem-vindo(a) ao</Text>
-                <Text size={32} weight={600}>
-                    WAITER <Text size={32}>APP</Text>
-                </Text>
-            </Title>
+            <StatusBar style="dark" />
 
-            <LogoutButton onPress={signOut}>
+            <Header />
+
+            <CategoriesList />
+            <ProductsList />
+
+            {/* <LogoutButton onPress={signOut}>
                 <SimpleLineIcons name="logout" color="#000" size={28} />
-            </LogoutButton>
+            </LogoutButton> */}
+
+            {table && (
+                <Cart />
+            )}
         </Container>
     )
 }

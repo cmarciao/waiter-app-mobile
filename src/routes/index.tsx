@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { OrderProvider } from '../contexts/OrderContext';
 
 import { AuthRoutes } from './auth.routes';
 import { PublicRoutes } from './public.routes';
@@ -11,7 +12,9 @@ export function Routes() {
     return (
         <NavigationContainer>
             {isSigned ? (
-                <AuthRoutes />
+                <OrderProvider>
+                    <AuthRoutes />
+                </OrderProvider>
             ): (
                 <PublicRoutes />
             )}

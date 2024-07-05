@@ -22,7 +22,7 @@ export class AsyncStorageService implements IStorageService {
     removeData(key: string): Promise<void> {
         return AsyncStorage.removeItem(key);
     }
-    
+
     clearAll(): Promise<void> {
         return AsyncStorage.clear();
     }

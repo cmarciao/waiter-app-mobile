@@ -6,7 +6,7 @@ export type IStorageService = {
 }
 
 class StorageService implements IStorageService {
-    storageService?: IStorageService;
+    private storageService?: IStorageService;
 
     initialize(storageService: IStorageService) {
         this.storageService = storageService;
@@ -15,15 +15,15 @@ class StorageService implements IStorageService {
     setData(key: string, value: string): Promise<void> {
         return this.storageService!.setData(key, value);
     }
-    
+
     getData<T>(key: string): Promise<T | null> {
         return this.storageService!.getData(key);
     }
-    
+
     removeData(key: string): Promise<void> {
         return this.storageService!.removeData(key);
     }
-    
+
     clearAll(): Promise<void> {
         return this.storageService!.clearAll();
     }
