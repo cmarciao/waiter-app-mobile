@@ -5,7 +5,7 @@ import { Container, HeaderContainer, NotificationButton, Table, Title } from "./
 import { Button } from "../../../../components/Button";
 
 export function Header() {
-    const { table, handleCancelOrder } = useOrder();
+    const { table, handleClearOrder } = useOrder();
 
     return (
         <Container>
@@ -30,7 +30,7 @@ export function Header() {
                         <Text size={24} weight='600'>Pedido</Text>
                         <Button
                             secondary
-                            onPress={handleCancelOrder}
+                            onPress={handleClearOrder}
                         >
                             cancelar produto</Button>
                     </>

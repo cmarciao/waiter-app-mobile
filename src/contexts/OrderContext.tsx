@@ -11,7 +11,7 @@ type OderContextProps = {
     handleDecremmentCartItem: (product: Product) => void
     handleOpenTableModal: () => void;
     handleCloseTableModal: () => void;
-    handleCancelOrder: () => void;
+    handleClearOrder: () => void;
 }
 
 type OrderProviderProps = {
@@ -89,7 +89,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
         });
     }
 
-    function handleCancelOrder() {
+    function handleClearOrder() {
         setTable('');
         setCartItems([]);
     }
@@ -104,7 +104,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
             handleDecremmentCartItem,
             handleOpenTableModal,
             handleCloseTableModal,
-            handleCancelOrder
+            handleClearOrder
         }}>
             {children}
         </OrderContext.Provider>

@@ -9,8 +9,24 @@ import { TabItem } from "../components/TabItem";
 import { OrdersIcon } from "../components/Icons/OrdersIcons";
 import { ProfileIcon } from "../components/Icons/ProfileIcon";
 import { useOrder } from "../hooks/useOrder";
+import { ConfirmedOrder } from "../screens/ConfirmedOrder";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function HomeStack() {
+    return (
+        <Stack.Navigator
+            initialRouteName="home"
+            screenOptions={{
+                headerShown: false
+            }}>
+            <Stack.Screen name="/" component={Home} />
+            <Stack.Screen name="confirmed-order" component={ConfirmedOrder} />
+        </Stack.Navigator>
+    )
+}
 
 export function AuthRoutes() {
     const { table } = useOrder();
@@ -28,7 +44,7 @@ export function AuthRoutes() {
         >
             <Tab.Screen
                 name='home'
-                component={Home}
+                component={HomeStack}
                 options={{
                     tabBarButton: () => (
                         <TabItem

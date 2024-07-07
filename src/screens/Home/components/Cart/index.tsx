@@ -6,12 +6,44 @@ import { formatPrice } from "../../../../utils/format-utils";
 import { AddIcon } from "../../../../components/Icons/AddIcon";
 import { Button } from "../../../../components/Button";
 import { MinusIcon } from "../../../../components/Icons/MinusIcon";
+import OrdersService from "../../../../services/OrdersService";
+import Toast from "react-native-toast-message";
+import { ResponseError } from "../../../../types/ResponseError";
+import { useNavigation } from "@react-navigation/native";
 
 export function Cart() {
     const {
+        table,
         cartItems,
+        handleAddToCart,
         handleDecremmentCartItem
     } = useOrder();
+    const { navigate } = useNavigation();
+
+    async function handleSaveOrder() {
+        const productIds = cartItems.map((item) => item.product.id);
+
+        const response = await OrdersService.create({ table, productIds });
+
+        if ((response as ResponseError)?.error) {
+            const error = response as ResponseError;
+
+            Toast.show({
+                type: 'error',
+                text1: error.error,
+                text2: error.message
+            });
+
+            return;
+        }
+
+        Toast.show({
+            type: 'success',
+            text1: 'Order saved successfully.'
+        });
+
+        navigate('confirmed-order' as never);
+    }
 
     const total = cartItems.reduce((acc, cartItem) => {
         return acc + cartItem.quantity * cartItem.product.price;
@@ -53,13 +85,19 @@ export function Cart() {
                             <Actions>
                                 <Pressable
                                     style={{ marginRight: 16 }}
+                                    hitSlop={8}
                                     onPress={() => handleDecremmentCartItem(item.product)}
                                 >
                                     <MinusIcon />
                                 </Pressable>
 
                                 <Pressable>
-                                    <AddIcon />
+                                    <Pressable
+                                        hitSlop={8}
+                                        onPress={() => handleAddToCart(item.product)}
+                                    >
+                                        <AddIcon />
+                                    </Pressable>
                                 </Pressable>
                             </Actions>
                         </Item>
@@ -84,6 +122,7 @@ export function Cart() {
                 <Button
                     style={{ flex: 1 }}
                     disabled={cartItems.length === 0}
+                    onPress={handleSaveOrder}
                 >
                     Confirmar pedido
                 </Button>

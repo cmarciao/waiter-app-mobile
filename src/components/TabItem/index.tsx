@@ -16,7 +16,6 @@ function getIconColor(isFocused: boolean) {
 }
 
 export function TabItem({ title, href, icon: Icon }: TabItemProps) {
-    const router = useRoute();
     const navigate = useNavigation();
 
     return (
