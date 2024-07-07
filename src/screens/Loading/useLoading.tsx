@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { sleep } from "../../utils/sleep";
-import Toast from "react-native-toast-message";
 
 export function useLoading(navigation: NativeStackNavigationProp<{}>) {
     const spinAnim = useRef(new Animated.Value(0));
@@ -11,14 +10,14 @@ export function useLoading(navigation: NativeStackNavigationProp<{}>) {
         inputRange: [0, .25, .5, .75, 1],
         outputRange: ['0deg', '90deg', '180deg', '270deg', '360deg']
     });
-                
+
     const animatedStyle = {
         transform: [
             { rotate: interpolateRotation }
         ]
     }
 
-    useEffect(() => {        
+    useEffect(() => {
         Animated.loop(
             Animated.timing(spinAnim.current, {
                 toValue: 1,
@@ -32,7 +31,7 @@ export function useLoading(navigation: NativeStackNavigationProp<{}>) {
     useEffect(() => {
         async function mockedLoad() {
             await sleep(1000 * 3);
-            navigation.replace('home' as never , undefined as never);
+            navigation.replace('home' as never, undefined as never);
         }
 
         mockedLoad();
