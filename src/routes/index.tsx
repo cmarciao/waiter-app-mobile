@@ -15,7 +15,7 @@ export function Routes() {
                 <OrderProvider>
                     <AuthRoutes />
                 </OrderProvider>
-            ): (
+            ) : (
                 <PublicRoutes />
             )}
         </NavigationContainer>

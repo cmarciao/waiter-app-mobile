@@ -4,16 +4,16 @@ import { Container } from "./styles";
 import { Header } from "./components/Header";
 import { ProductsList } from "./components/ProductsList";
 import { StatusBar } from "expo-status-bar";
-import { Text } from "../../components/Text";
 import { useOrder } from "../../hooks/useOrder";
 import { Cart } from "./components/Cart";
+import { AddTableModal } from "./components/AddTableModal";
 
 // import { SimpleLineIcons } from "@expo/vector-icons";
 // import { useAuth } from "../../hooks/useAuth";
 
 export function Home() {
     // const { signOut } = useAuth();
-    const { table } = useOrder();
+    const { table, isTableModalOpen, handleCloseTableModal } = useOrder();
 
     return (
         <Container>
@@ -31,6 +31,11 @@ export function Home() {
             {table && (
                 <Cart />
             )}
+
+            <AddTableModal
+                isOpen={isTableModalOpen}
+                onClose={handleCloseTableModal}
+            />
         </Container>
     )
 }

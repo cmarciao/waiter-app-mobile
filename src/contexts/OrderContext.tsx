@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useState } from "react";
-import { AddTableModal } from "../screens/Home/components/AddTableModal";
 import { CartItem } from "../types/CartItem";
 import { Product } from "../types/Product";
 
@@ -39,7 +38,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
     }
 
     function handleAddToCart(product: Product) {
-        if(!table) {
+        if (!table) {
             setIsTableModalOpen(true);
         }
 
@@ -48,7 +47,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
                 cartItem.product.id === product.id
             );
 
-            if(itemIndex < 0) {
+            if (itemIndex < 0) {
                 return prevState.concat({
                     quantity: 1,
                     product
@@ -76,7 +75,7 @@ export function OrderProvider({ children }: OrderProviderProps) {
             const item = prevState[itemIndex];
             const newCartItems = [...prevState];
 
-            if(item.quantity === 1) {
+            if (item.quantity === 1) {
                 newCartItems.splice(itemIndex, 1);
                 return newCartItems;
             }
@@ -108,11 +107,6 @@ export function OrderProvider({ children }: OrderProviderProps) {
             handleCancelOrder
         }}>
             {children}
-
-            <AddTableModal
-                isOpen={isTableModalOpen}
-                onClose={handleCloseTableModal}
-            />
         </OrderContext.Provider>
     )
 }

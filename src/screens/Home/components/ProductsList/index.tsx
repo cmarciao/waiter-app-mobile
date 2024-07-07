@@ -13,7 +13,7 @@ export function ProductsList() {
         async function loadData() {
             const response = await ProductsService.listAll();
 
-            if((response as ResponseError)?.error) {
+            if ((response as ResponseError)?.error) {
                 return;
             }
 

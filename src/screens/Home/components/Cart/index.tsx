@@ -18,7 +18,7 @@ export function Cart() {
     }, 0);
 
     return (
-        <View style={{paddingVertical: 16}}>
+        <View style={{ paddingVertical: 16 }}>
             {cartItems.length > 0 && (
                 <FlatList
                     keyExtractor={(cartItem) => cartItem.product.id}
@@ -82,7 +82,7 @@ export function Cart() {
                 </TotalContainer>
 
                 <Button
-                    style={{flex: 1}}
+                    style={{ flex: 1 }}
                     disabled={cartItems.length === 0}
                 >
                     Confirmar pedido
