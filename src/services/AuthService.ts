@@ -16,13 +16,8 @@ export type Response = SignInResponse | ResponseError;
 
 class AuthService {
     async signIn(params: SignInRequest): Promise<Response> {
-        try {
-            const response = await api.post<SignInResponse>('/auth/signin', params);
-            return response.data;
-        } catch(e) {
-            const error = e as AxiosError;
-            return error.response?.data as ResponseError;
-        }
+        const response = await api.post<SignInResponse>('/auth/signin', params);
+        return response.data;
     }
 }
 

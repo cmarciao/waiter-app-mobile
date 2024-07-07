@@ -5,13 +5,10 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
 import { useSignIn } from "./useSignIn";
-import { NativeStackScreenProps  } from '@react-navigation/native-stack'
 
 import { Container, Content, Fields, SubmitContent, Title } from "./styles";
 
-type SignInProps = NativeStackScreenProps<{}>;
-
-export function SignIn({ navigation }: SignInProps) {
+export function SignIn() {
     const {
         isSignIng,
         passwordInputRef,
@@ -19,7 +16,7 @@ export function SignIn({ navigation }: SignInProps) {
         errors,
         handleSignIn,
         hasErrorInForm
-    } = useSignIn(navigation);
+    } = useSignIn();
 
     return (
         <Container>
@@ -35,7 +32,7 @@ export function SignIn({ navigation }: SignInProps) {
                     <Controller
                         name="email"
                         control={control}
-                        render={({field: { onChange, value }}) => (
+                        render={({ field: { onChange, value } }) => (
                             <Input
                                 label="E-mail"
                                 placeholder="Seu e-mail de acesso"
@@ -49,11 +46,11 @@ export function SignIn({ navigation }: SignInProps) {
                             />
                         )}
                     />
-                    
+
                     <Controller
                         name="password"
                         control={control}
-                        render={({field: { onChange, value }}) => (
+                        render={({ field: { onChange, value } }) => (
                             <Input
                                 ref={passwordInputRef}
                                 label="Senha"

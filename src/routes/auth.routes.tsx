@@ -1,16 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { HomeIcon } from "../components/Icons/HomeIcon";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Home } from "../screens/Home";
 import { Orders } from "../screens/Orders";
+import { Loading } from "../screens/Loading";
 import { Profile } from "../screens/Profile";
+import { ConfirmedOrder } from "../screens/ConfirmedOrder";
+
 import { TabItem } from "../components/TabItem";
+import { HomeIcon } from "../components/Icons/HomeIcon";
 import { OrdersIcon } from "../components/Icons/OrdersIcons";
 import { ProfileIcon } from "../components/Icons/ProfileIcon";
+
 import { useOrder } from "../hooks/useOrder";
-import { ConfirmedOrder } from "../screens/ConfirmedOrder";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,18 +24,18 @@ function HomeStack() {
             screenOptions={{
                 headerShown: false
             }}>
-            <Stack.Screen name="/" component={Home} />
+            <Stack.Screen name="home" component={Home} />
             <Stack.Screen name="confirmed-order" component={ConfirmedOrder} />
         </Stack.Navigator>
     )
 }
 
-export function AuthRoutes() {
+function HomeTab() {
     const { table } = useOrder();
 
     return (
         <Tab.Navigator
-            initialRouteName="home"
+            initialRouteName="home-stack"
             screenOptions={{
                 headerShown: false,
                 tabBarStyle: {
@@ -43,13 +45,13 @@ export function AuthRoutes() {
             }}
         >
             <Tab.Screen
-                name='home'
+                name='home-stack'
                 component={HomeStack}
                 options={{
                     tabBarButton: () => (
                         <TabItem
                             title="Home"
-                            href="home"
+                            href="home-stack"
                             icon={HomeIcon}
                         />
                     )
@@ -84,5 +86,19 @@ export function AuthRoutes() {
                 }}
             />
         </Tab.Navigator>
+    );
+}
+
+export function AuthRoutes() {
+    return (
+        <Stack.Navigator
+            initialRouteName="loading"
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Stack.Screen name="loading" component={Loading} />
+            <Stack.Screen name="home-tab" component={HomeTab} />
+        </Stack.Navigator>
     );
 }

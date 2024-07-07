@@ -31,7 +31,7 @@ export function useLoading(navigation: NativeStackNavigationProp<{}>) {
     useEffect(() => {
         async function mockedLoad() {
             await sleep(1000 * 3);
-            navigation.replace('home' as never, undefined as never);
+            navigation.replace('home-tab' as never, undefined as never);
         }
 
         mockedLoad();
