@@ -21,7 +21,11 @@ export function Cart() {
     const { navigate } = useNavigation();
 
     async function handleSaveOrder() {
-        const productIds = cartItems.map((item) => item.product.id);
+        const productIds = cartItems.map((item) =>
+            Array(item.quantity).fill(item.product).map((product) =>
+                product.id
+            )
+        ).flat();
 
         const response = await OrdersService.create({ table, productIds });
 

@@ -19,6 +19,11 @@ class OrderService {
             return error.response?.data as ResponseError;
         }
     }
+
+    async getOrders() {
+        const response = await api.get('/orders');
+        return response.data;
+    }
 }
 
 export default new OrderService();

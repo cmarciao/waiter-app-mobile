@@ -26,11 +26,11 @@ export function ProductModal({ id, isOpen, onCloseModal }: ProductModalProps) {
     const [product, setProduct] = useState<Product | null>(null);
 
     useEffect(() => {
-        if(isOpen) {
+        if (isOpen) {
             async function loadData() {
                 const response = await ProductsService.getById(id)
 
-                if((response as ResponseError)?.error) {
+                if ((response as ResponseError)?.error) {
                     return;
                 }
 
@@ -41,7 +41,7 @@ export function ProductModal({ id, isOpen, onCloseModal }: ProductModalProps) {
         }
     }, [isOpen]);
 
-    if(!product) return;
+    if (!product) return;
 
     return (
         <Modal
