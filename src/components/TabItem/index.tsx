@@ -16,18 +16,18 @@ function getIconColor(isFocused: boolean) {
 }
 
 export function TabItem({ title, href, icon: Icon }: TabItemProps) {
-    const navigate = useNavigation();
+    const { navigate, isFocused } = useNavigation();
 
     return (
         <Container>
-            <Content onPress={() => navigate.navigate(href as never)}>
+            <Content onPress={() => navigate(href as never)}>
                 <View>
                     <Icon
-                        color={getIconColor(navigate.isFocused())}
+                        color={getIconColor(isFocused())}
                     />
                 </View>
 
-                <Text color={getIconColor(navigate.isFocused())} weight='500' >
+                <Text color={getIconColor(isFocused())} weight='500' >
                     {title}
                 </Text>
             </Content>

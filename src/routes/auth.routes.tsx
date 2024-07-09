@@ -5,6 +5,7 @@ import { Home } from "../screens/Home";
 import { Orders } from "../screens/Orders";
 import { Loading } from "../screens/Loading";
 import { Profile } from "../screens/Profile";
+import { Notification } from "../screens/Notification";
 import { ConfirmedOrder } from "../screens/ConfirmedOrder";
 
 import { TabItem } from "../components/TabItem";
@@ -23,8 +24,10 @@ function HomeStack() {
             initialRouteName="home"
             screenOptions={{
                 headerShown: false
-            }}>
+            }}
+        >
             <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="notification" component={Notification} />
             <Stack.Screen name="confirmed-order" component={ConfirmedOrder} />
         </Stack.Navigator>
     )

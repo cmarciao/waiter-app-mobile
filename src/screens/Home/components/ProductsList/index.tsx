@@ -15,7 +15,7 @@ export function ProductsList({ products }: ProductsListProps) {
                 <EmptyContainer>
                     <EmptyIcon />
 
-                    <EmptyText>
+                    <EmptyText weight='500'>
                         Não há produtos desta categoria no momento.
                     </EmptyText>
                 </EmptyContainer>

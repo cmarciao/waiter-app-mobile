@@ -9,9 +9,9 @@ import { AnimatedLoading } from "../../components/AnimatedLoading";
 
 import { Container, Subtitle, Title } from "./styles";
 
-type SignInProps = NativeStackScreenProps<{}>;
+type LoadingProps = NativeStackScreenProps<{}>;
 
-export function Loading({ navigation }: SignInProps) {
+export function Loading({ navigation }: LoadingProps) {
     useEffect(() => {
         async function mockedLoad() {
             await sleep(1000 * 3);

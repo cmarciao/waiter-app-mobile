@@ -15,9 +15,12 @@ import {
     Title,
     ActionButton
 } from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export function Header() {
     const { signOut } = useAuth();
+    const { navigate } = useNavigation();
+
     const { table, handleClearOrder } = useOrder();
 
     return (
@@ -33,7 +36,7 @@ export function Header() {
                         </Title>
 
                         <ActionsContainer>
-                            <ActionButton>
+                            <ActionButton onPress={() => navigate('notification' as never)}>
                                 <NotificationIcon />
                             </ActionButton>
 
