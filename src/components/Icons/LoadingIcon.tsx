@@ -1,8 +1,12 @@
 import { SvgXml } from "react-native-svg";
 import { IconProps } from "../../types/IconProps";
 
-export function LoadingIcon({ color }: IconProps) {
-    const markup = `<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+type LoadingIconProps = IconProps & {
+    size?: number;
+}
+
+export function LoadingIcon({ color, size = 24 }: LoadingIconProps) {
+    const markup = `<svg width="${size}" height="${size}" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.8" d="M21.5039 12H18.5027" stroke="${color || 'white'}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path opacity="0.4" d="M3.49634 12H6.49759" stroke="${color || 'white'}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12.5002 2.99622V5.99747" stroke="${color || 'white'}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

@@ -22,7 +22,13 @@ export const Title = styled.View`
     gap: 4px;
 `;
 
-export const NotificationButton = styled.Pressable`
+export const ActionsContainer = styled.View`
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+`;
+
+export const ActionButton = styled.Pressable`
     padding: 10px;
     background-color: #FFF;
     border-radius: 9999px;

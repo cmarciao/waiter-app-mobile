@@ -1,6 +1,4 @@
 import styled from "styled-components/native";
-import { LoadingIcon } from "../../components/Icons/LoadingIcon";
-import { keyframes } from "styled-components";
 
 export const Container = styled.View`
     flex: 1;

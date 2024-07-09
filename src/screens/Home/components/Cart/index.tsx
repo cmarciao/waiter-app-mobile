@@ -1,57 +1,32 @@
 import { FlatList, Pressable, View } from "react-native";
-import { Text } from "../../../../components/Text";
-import { useOrder } from "../../../../hooks/useOrder";
-import { Actions, Image, Item, ProductContainer, ProductDetails, QuantityContainer, Summary, TotalContainer } from "./styles";
+
 import { formatPrice } from "../../../../utils/format-utils";
-import { AddIcon } from "../../../../components/Icons/AddIcon";
+
+import { Text } from "../../../../components/Text";
 import { Button } from "../../../../components/Button";
+import { AddIcon } from "../../../../components/Icons/AddIcon";
 import { MinusIcon } from "../../../../components/Icons/MinusIcon";
-import OrdersService from "../../../../services/OrdersService";
-import Toast from "react-native-toast-message";
-import { ResponseError } from "../../../../types/ResponseError";
-import { useNavigation } from "@react-navigation/native";
+
+import {
+    Actions,
+    Image,
+    Item,
+    ProductContainer,
+    ProductDetails,
+    QuantityContainer,
+    Summary,
+    TotalContainer
+} from "./styles";
+import { useCart } from "./useCart";
 
 export function Cart() {
     const {
-        table,
+        total,
         cartItems,
         handleAddToCart,
-        handleDecremmentCartItem
-    } = useOrder();
-    const { navigate } = useNavigation();
-
-    async function handleSaveOrder() {
-        const productIds = cartItems.map((item) =>
-            Array(item.quantity).fill(item.product).map((product) =>
-                product.id
-            )
-        ).flat();
-
-        const response = await OrdersService.create({ table, productIds });
-
-        if ((response as ResponseError)?.error) {
-            const error = response as ResponseError;
-
-            Toast.show({
-                type: 'error',
-                text1: error.error,
-                text2: error.message
-            });
-
-            return;
-        }
-
-        Toast.show({
-            type: 'success',
-            text1: 'Order saved successfully.'
-        });
-
-        navigate('confirmed-order' as never);
-    }
-
-    const total = cartItems.reduce((acc, cartItem) => {
-        return acc + cartItem.quantity * cartItem.product.price;
-    }, 0);
+        handleSaveOrder,
+        handleDecremmentCartItem,
+    } = useCart();
 
     return (
         <View style={{ paddingVertical: 16 }}>

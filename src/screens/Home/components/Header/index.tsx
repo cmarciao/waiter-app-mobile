@@ -1,10 +1,23 @@
-import { Text } from "../../../../components/Text";
-import { NotificationIcon } from "../../../../components/Icons/NotificationIcons";
+import { SimpleLineIcons } from "@expo/vector-icons";
+
+import { useAuth } from "../../../../hooks/useAuth";
 import { useOrder } from "../../../../hooks/useOrder";
-import { Container, HeaderContainer, NotificationButton, Table, Title } from "./styles";
+
+import { Text } from "../../../../components/Text";
 import { Button } from "../../../../components/Button";
+import { NotificationIcon } from "../../../../components/Icons/NotificationIcons";
+
+import {
+    Container,
+    HeaderContainer,
+    ActionsContainer,
+    Table,
+    Title,
+    ActionButton
+} from "./styles";
 
 export function Header() {
+    const { signOut } = useAuth();
     const { table, handleClearOrder } = useOrder();
 
     return (
@@ -19,9 +32,15 @@ export function Header() {
                             </Text>
                         </Title>
 
-                        <NotificationButton>
-                            <NotificationIcon />
-                        </NotificationButton>
+                        <ActionsContainer>
+                            <ActionButton>
+                                <NotificationIcon />
+                            </ActionButton>
+
+                            <ActionButton onPress={signOut}>
+                                <SimpleLineIcons name="logout" color="#333" size={24} />
+                            </ActionButton>
+                        </ActionsContainer>
                     </>
                 )}
 

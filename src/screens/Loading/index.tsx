@@ -1,17 +1,25 @@
-import { Animated } from "react-native";
+import { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
+import { sleep } from "../../utils/sleep";
+
 import { Text } from "../../components/Text";
-import { LoadingIcon } from "../../components/Icons/LoadingIcon";
-import { useLoading } from "./useLoading";
+import { AnimatedLoading } from "../../components/AnimatedLoading";
 
 import { Container, Subtitle, Title } from "./styles";
 
 type SignInProps = NativeStackScreenProps<{}>;
 
 export function Loading({ navigation }: SignInProps) {
-    const { animatedStyle } = useLoading(navigation);
+    useEffect(() => {
+        async function mockedLoad() {
+            await sleep(1000 * 3);
+            navigation.replace('home-tab' as never, undefined as never);
+        }
+
+        mockedLoad();
+    }, [])
 
     return (
         <Container>
@@ -23,9 +31,8 @@ export function Loading({ navigation }: SignInProps) {
             </Title>
 
             <Subtitle>
-                <Animated.View style={animatedStyle}>
-                    <LoadingIcon />
-                </Animated.View>
+                <AnimatedLoading />
+
                 <Text color="#fff">Atualizando o cardápio...</Text>
             </Subtitle>
 

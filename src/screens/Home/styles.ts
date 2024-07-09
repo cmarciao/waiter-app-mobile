@@ -5,8 +5,8 @@ export const Container = styled.View`
     background-color: #fff;
 `;
 
-// export const LogoutButton = styled.Pressable`
-//     position: absolute;
-//     top: 16px;
-//     left: 16px;
-// `;
+export const LoadingContainer = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`;

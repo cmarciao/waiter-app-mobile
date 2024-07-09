@@ -1,43 +1,41 @@
-import { useEffect, useState } from "react";
-import { ProductItem } from "../ProductItem";
 import { FlatList } from "react-native";
+import { ProductItem } from "../ProductItem";
 import { Product } from "../../../../types/Product";
-import ProductsService from "../../../../services/ProductsService";
-import { ResponseError } from "../../../../types/ResponseError";
+import { EmptyIcon } from "../../../../components/Icons/EmptyIcon";
+import { EmptyContainer, EmptyText } from "./styles";
 
-export function ProductsList() {
-    const [categories, setCategories] = useState<Product[]>([]);
+type ProductsListProps = {
+    products: Product[];
+}
 
-
-    useEffect(() => {
-        async function loadData() {
-            const response = await ProductsService.listAll();
-
-            if ((response as ResponseError)?.error) {
-                return;
-            }
-
-            const categories = response as Product[];
-
-            setCategories(categories);
-        }
-
-        loadData();
-    }, []);
-
+export function ProductsList({ products }: ProductsListProps) {
     return (
-        <FlatList
-            data={categories}
-            renderItem={({ item }) => (
-                <ProductItem
-                    product={item}
+        <>
+            {products.length === 0 && (
+                <EmptyContainer>
+                    <EmptyIcon />
+
+                    <EmptyText>
+                        Não há produtos desta categoria no momento.
+                    </EmptyText>
+                </EmptyContainer>
+            )}
+
+            {products.length > 0 && (
+                <FlatList
+                    data={products}
+                    renderItem={({ item }) => (
+                        <ProductItem
+                            product={item}
+                        />
+                    )}
+                    keyExtractor={(item) => `${item.id}`}
+                    style={{
+                        marginTop: 48
+                    }}
+                    showsVerticalScrollIndicator={false}
                 />
             )}
-            keyExtractor={(item) => `${item.id}`}
-            style={{
-                marginTop: 48
-            }}
-            showsVerticalScrollIndicator={false}
-        />
+        </>
     )
 }

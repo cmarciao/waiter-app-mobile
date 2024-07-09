@@ -1,6 +1,48 @@
+import { OrderState } from "../types/Order";
+
 export function formatPrice(price: number) {
 	return new Intl.NumberFormat('pt-BR', {
 		style: 'currency',
 		currency: 'BRL'
 	}).format(price);
+}
+
+export function formatOrderStatusColor(orderState: string): string {
+	switch (orderState) {
+		case OrderState.WAITING: {
+			return '#D76C30';
+		}
+
+		case OrderState.PREPARING: {
+			return '#D76C30';
+		}
+
+		case OrderState.FINISHED: {
+			return '#30D787';
+		}
+
+		default: {
+			return '#666666';
+		}
+	}
+}
+
+export function formatOrderStateToOrderMessage(orderState: string): string {
+	switch (orderState) {
+		case OrderState.WAITING: {
+			return 'Na fila';
+		}
+
+		case OrderState.PREPARING: {
+			return 'Em produção';
+		}
+
+		case OrderState.FINISHED: {
+			return 'Pronto';
+		}
+
+		default: {
+			return 'Finalizado';
+		}
+	}
 }

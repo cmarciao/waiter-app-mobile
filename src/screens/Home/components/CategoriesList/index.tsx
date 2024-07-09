@@ -1,38 +1,32 @@
 import { FlatList, View } from "react-native";
 import { CategoryItem } from "../CategoryItem";
-import { useEffect, useState } from "react";
-import CategoriesService from "../../../../services/CategoriesService";
-import { ResponseError } from "../../../../types/ResponseError";
 import { Category } from "../../../../types/Category";
 
-export function CategoriesList() {
-    const [categories, setCategories] = useState<Category[]>([]);
+type CategoriesListProps = {
+    categories: Category[];
+    selectedCatergoryId: string;
+    onSelectCategory: (categoryId: string) => void;
+}
 
-    useEffect(() => {
-        async function loadData() {
-            const response = await CategoriesService.listAll();
-
-            if((response as ResponseError)?.error) {
-                return;
-            }
-
-            const categories = response as Category[];
-
-            setCategories(categories);
-        }
-
-        loadData();
-    }, []);
-
+export function CategoriesList({
+    categories,
+    selectedCatergoryId,
+    onSelectCategory
+}: CategoriesListProps) {
     return (
         <View>
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 data={categories}
-                renderItem={({ item: {emoji, name} }) => (
-                    <CategoryItem emoji={emoji} name={name} />)
-                }
+                renderItem={({ item: { id, emoji, name } }) => (
+                    <CategoryItem
+                        emoji={emoji}
+                        name={name}
+                        isSelected={selectedCatergoryId ? id === selectedCatergoryId : true}
+                        onPress={() => onSelectCategory(id)}
+                    />
+                )}
                 keyExtractor={item => `${item.id}`}
                 contentContainerStyle={{
                     marginTop: 22,

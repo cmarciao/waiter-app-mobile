@@ -1,57 +1,15 @@
 import { FlatList, View } from "react-native";
-import { Order } from "../OrdersList";
 import { Text } from "../../../../components/Text";
+import { Order, OrderState } from "../../../../types/Order";
+
+import {
+    formatOrderStateToOrderMessage,
+    formatOrderStatusColor
+} from "../../../../utils/format-utils";
 
 type OrderItemProps = {
     title: string;
     ordersList: Order[];
-}
-
-export enum OrderState {
-    WAITING = 'WAITING',
-    PREPARING = 'PREPARING',
-    FINISHED = 'FINISHED',
-    HISTORIC = 'HISTORIC',
-}
-
-function orderStatusColor(orderState: string): string {
-    switch (orderState) {
-        case OrderState.WAITING: {
-            return '#D76C30';
-        }
-
-        case OrderState.PREPARING: {
-            return '#D76C30';
-        }
-
-        case OrderState.FINISHED: {
-            return '#30D787';
-        }
-
-        default: {
-            return '#666666';
-        }
-    }
-}
-
-function orderStateToOrderMessage(orderState: string): string {
-    switch (orderState) {
-        case OrderState.WAITING: {
-            return 'Na fila';
-        }
-
-        case OrderState.PREPARING: {
-            return 'Em produção';
-        }
-
-        case OrderState.FINISHED: {
-            return 'Pronto';
-        }
-
-        default: {
-            return 'Finalizado';
-        }
-    }
 }
 
 export function OrderItem({ title, ordersList }: OrderItemProps) {
@@ -89,20 +47,20 @@ export function OrderItem({ title, ordersList }: OrderItemProps) {
                                     style={{
                                         height: 6,
                                         width: 6,
-                                        backgroundColor: orderStatusColor(item.orderState),
+                                        backgroundColor: formatOrderStatusColor(item.orderState),
                                         borderRadius: 99999
                                     }}
                                 ></View>
 
                                 <Text
-                                    color={orderStatusColor(item.orderState)}
+                                    color={formatOrderStatusColor(item.orderState)}
                                     style={{
                                         flexDirection: 'row',
                                         alignItems: 'center',
                                         gap: 6
                                     }}
                                 >
-                                    {orderStateToOrderMessage(item.orderState)}
+                                    {formatOrderStateToOrderMessage(item.orderState)}
                                 </Text>
                             </View>
                         </View>

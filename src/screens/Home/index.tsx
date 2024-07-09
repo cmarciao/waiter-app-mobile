@@ -1,19 +1,26 @@
-import { CategoriesList } from "./components/CategoriesList";
+import { StatusBar } from "expo-status-bar";
 
-import { Container } from "./styles";
+import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { ProductsList } from "./components/ProductsList";
-import { StatusBar } from "expo-status-bar";
-import { useOrder } from "../../hooks/useOrder";
-import { Cart } from "./components/Cart";
 import { AddTableModal } from "./components/AddTableModal";
+import { CategoriesList } from "./components/CategoriesList";
+import { AnimatedLoading } from "../../components/AnimatedLoading";
 
-// import { SimpleLineIcons } from "@expo/vector-icons";
-// import { useAuth } from "../../hooks/useAuth";
+import { useHome } from "./useHome";
+import { Container, LoadingContainer } from "./styles";
 
 export function Home() {
-    // const { signOut } = useAuth();
-    const { table, isTableModalOpen, handleCloseTableModal } = useOrder();
+    const {
+        table,
+        categories,
+        products,
+        isTableModalOpen,
+        isLoadingProducts,
+        selectedCatergoryId,
+        handleSelectCategory,
+        handleCloseTableModal
+    } = useHome();
 
     return (
         <Container>
@@ -21,21 +28,34 @@ export function Home() {
 
             <Header />
 
-            <CategoriesList />
-            <ProductsList />
-
-            {/* <LogoutButton onPress={signOut}>
-                <SimpleLineIcons name="logout" color="#000" size={28} />
-            </LogoutButton> */}
-
-            {table && (
-                <Cart />
+            {isLoadingProducts && (
+                <LoadingContainer>
+                    <AnimatedLoading
+                        size={54}
+                        color="#D73035"
+                    />
+                </LoadingContainer>
             )}
 
-            <AddTableModal
-                isOpen={isTableModalOpen}
-                onClose={handleCloseTableModal}
-            />
+            {!isLoadingProducts && (
+                <>
+                    <CategoriesList
+                        categories={categories}
+                        selectedCatergoryId={selectedCatergoryId}
+                        onSelectCategory={handleSelectCategory}
+                    />
+                    <ProductsList
+                        products={products}
+                    />
+
+                    {table && <Cart />}
+
+                    <AddTableModal
+                        isOpen={isTableModalOpen}
+                        onClose={handleCloseTableModal}
+                    />
+                </>
+            )}
         </Container>
     )
 }
