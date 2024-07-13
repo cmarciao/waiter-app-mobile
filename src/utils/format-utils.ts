@@ -7,6 +7,22 @@ export function formatPrice(price: number) {
 	}).format(price);
 }
 
+export function formatOrderStateToIcon(orderState: OrderState) {
+    switch(orderState) {
+        case OrderState.WAITING: {
+            return '🕒';
+        }
+
+        case OrderState.PREPARING: {
+            return '👨‍🍳';
+        }
+
+        default: {
+            return '✅';
+        }
+    }
+}
+
 export function formatOrderStatusColor(orderState: string): string {
 	switch (orderState) {
 		case OrderState.WAITING: {
@@ -43,6 +59,22 @@ export function formatOrderStateToOrderMessage(orderState: string): string {
 
 		default: {
 			return 'Finalizado';
+		}
+	}
+}
+
+export function formatOrderStateToNotificationMessage(orderState: string): string {
+	switch (orderState) {
+		case OrderState.WAITING: {
+			return 'Na fila';
+		}
+
+		case OrderState.PREPARING: {
+			return 'Em produção';
+		}
+
+		default: {
+			return 'Pronto';
 		}
 	}
 }

@@ -3,13 +3,13 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { Text } from "../../components/Text";
 import { ArrowLeft } from "../../components/Icons/ArrowLeft";
-import { EmptyIcon } from "../../components/Icons/EmptyIcon";
+import { NotificationsList } from "./components/NotificationsList";
 
-import { Container, Header, EmptyContainer, EmptyText } from "./styles";
+import { Container, Header } from "./styles";
 
 type NotificationsProps = NativeStackScreenProps<{}>;
 
-export function Notification({ navigation }: NotificationsProps) {
+export function Notifications({ navigation }: NotificationsProps) {
     return (
         <Container>
             <Header>
@@ -22,13 +22,7 @@ export function Notification({ navigation }: NotificationsProps) {
                 </Text>
             </Header>
 
-            <EmptyContainer>
-                <EmptyIcon />
-
-                <EmptyText weight='500'>
-                    Você não possui nenhuma notificação no momento.
-                </EmptyText>
-            </EmptyContainer>
+            <NotificationsList />
         </Container>
     )
 }

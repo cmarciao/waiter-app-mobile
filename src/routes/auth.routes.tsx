@@ -5,7 +5,7 @@ import { Home } from "../screens/Home";
 import { Orders } from "../screens/Orders";
 import { Loading } from "../screens/Loading";
 import { Profile } from "../screens/Profile";
-import { Notification } from "../screens/Notification";
+import { Notifications } from "../screens/Notifications";
 import { ConfirmedOrder } from "../screens/ConfirmedOrder";
 
 import { TabItem } from "../components/TabItem";
@@ -27,7 +27,7 @@ function HomeStack() {
             }}
         >
             <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="notification" component={Notification} />
+            <Stack.Screen name="notification" component={Notifications} />
             <Stack.Screen name="confirmed-order" component={ConfirmedOrder} />
         </Stack.Navigator>
     )

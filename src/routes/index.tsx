@@ -5,6 +5,7 @@ import { AuthRoutes } from './auth.routes';
 import { PublicRoutes } from './public.routes';
 
 import { useAuth } from '../hooks/useAuth';
+import { WebSocketProvider } from '../contexts/WebSocketContext';
 
 export function Routes() {
     const { isSigned } = useAuth();
@@ -12,9 +13,11 @@ export function Routes() {
     return (
         <NavigationContainer>
             {isSigned ? (
-                <OrderProvider>
-                    <AuthRoutes />
-                </OrderProvider>
+                <WebSocketProvider>
+                    <OrderProvider>
+                        <AuthRoutes />
+                    </OrderProvider>
+                </WebSocketProvider>
             ) : (
                 <PublicRoutes />
             )}
