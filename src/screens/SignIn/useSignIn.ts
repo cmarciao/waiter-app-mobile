@@ -1,15 +1,14 @@
 import { useRef } from "react";
 import { TextInput } from "react-native";
-import { AxiosError } from "axios";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Toast from "react-native-toast-message";
 import { SignInResponse } from "../../services/AuthService";
 import StorageService from "../../services/storage/StorageService";
-import { ResponseError } from '@/types/ResponseError';
 import { storageNames } from "../../constants/storage-names";
 import { useAuth } from "@hooks/useAuth";
+import { formatAxiosErrorToResponseError } from "@/utils/format-utils";
 
 const signInSchema = z.object({
     email: z.string({ message: 'Por favor, insira seu email.' }).email('Email inválido.'),
@@ -42,8 +41,7 @@ export function useSignIn() {
                 text2: 'Tenha um bom trabalho!'
             });
         } catch (e) {
-            const err = e as AxiosError;
-            const { error, message } = err.response?.data as ResponseError;
+            const { error, message } = formatAxiosErrorToResponseError(e);
 
             Toast.show({
                 type: 'error',

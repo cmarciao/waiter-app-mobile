@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import OrdersService from "../services/OrdersService";
 
 export function useOrders() {
-    const { data, isFetching, isError, refetch } = useQuery({
+    const { data, isLoading, isError, refetch } = useQuery({
         queryKey: ['orders'],
         queryFn: OrdersService.getOrders
     });
@@ -10,7 +10,7 @@ export function useOrders() {
     return {
         orders: data || [],
         loadOrders: refetch,
-        isLoadingOrders: isFetching,
+        isLoadingOrders: isLoading,
         isLoadOrdersError: isError,
     };
 }

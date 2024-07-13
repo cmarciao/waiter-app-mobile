@@ -35,14 +35,16 @@ const profileSchema = z.object({
 type ProfileSchema = z.infer<typeof profileSchema>;
 
 export function useProfile() {
+    const { me, loadMe, isFetchingMe, isFetchMeError } = useMe();
+
     const emailInputRef = useRef<TextInput>();
     const passwordInputRef = useRef<TextInput>();
     const confirmPasswordInputRef = useRef<TextInput>();
 
-    const { me, loadMe, isFetchingMe, isFetchMeError } = useMe();
-
     const { control, handleSubmit, formState: { errors } } = useForm<ProfileSchema>({
         resolver: zodResolver(profileSchema),
+        defaultValues: me,
+        values: me,
     });
 
     const { mutateAsync: updateProfile, isPending: isUpdatingProfile } = useMutation({
@@ -52,13 +54,21 @@ export function useProfile() {
     const handleSaveProfile = handleSubmit(async (data: ProfileSchema) => {
         const { confirmPassword, ...profile } = data;
 
-        await updateProfile(profile);
+        try {
+            await updateProfile(profile);
 
-        Toast.show({
-            type: 'success',
-            text1: 'Updated',
-            text2: 'User updated successfully'
-        })
+            Toast.show({
+                type: 'success',
+                text1: 'Perfil salvo',
+                text2: 'Perfil editado com sucesso.'
+            })
+        } catch {
+            Toast.show({
+                type: 'error',
+                text1: 'Error ao editar perfil',
+                text2: 'Não foi possível editar o perfil.'
+            })
+        }
     });
 
     return {

@@ -3,6 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import { useOrder } from "@hooks/useOrder";
 import { ResponseError } from "@/types/ResponseError";
+import { formatAxiosErrorToResponseError } from "@/utils/format-utils";
 
 export function useCart() {
     const {
@@ -22,26 +23,22 @@ export function useCart() {
             )
         ).flat();
 
-        const response = await saveOrder({ table, productIds });
-
-        if ((response as ResponseError)?.error) {
-            const error = response as ResponseError;
-
+        try {
+            await saveOrder({ table, productIds });
+            
             Toast.show({
-                type: 'error',
-                text1: error.error,
-                text2: error.message
+                type: 'success',
+                text1: 'Order saved successfully.'
             });
 
-            return;
+            navigate('confirmed-order' as never);
+        } catch {
+            Toast.show({
+                type: 'error',
+                text1: 'Error ao cadastrar pedido',
+                text2: 'Não foi possível cadastrar um novo pedido.'
+            });
         }
-
-        Toast.show({
-            type: 'success',
-            text1: 'Order saved successfully.'
-        });
-
-        navigate('confirmed-order' as never);
     }
 
     const total = cartItems.reduce((acc, cartItem) => {

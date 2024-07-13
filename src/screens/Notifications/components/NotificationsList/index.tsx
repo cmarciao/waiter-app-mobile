@@ -12,17 +12,18 @@ export function NotificationsList() {
         notifications,
         loadNotifications,
         isFetchingNotifications,
+        isLoadingNotifications,
         isLoadNotificationsError
     } = useNotificationsList();
 
     const isFetchSuccess = !isFetchingNotifications && !isLoadNotificationsError;
     const hasError = !isFetchingNotifications && isLoadNotificationsError;
-    const hasProducts = isFetchSuccess && notifications.length > 0;
-    const hasEmptyProducts = isFetchSuccess && notifications.length === 0;
+    const hasNotifications = notifications.length > 0;
+    const hasEmptyNotifications = isFetchSuccess && !hasNotifications;
 
     return (
         <>
-            {isFetchingNotifications && (
+            {isLoadingNotifications && (
                 <LoadingContainer>
                     <AnimatedLoading
                         size={54}
@@ -38,13 +39,13 @@ export function NotificationsList() {
                 />
             )}
 
-            {hasEmptyProducts && (
+            {hasEmptyNotifications && (
                 <EmptyInformation
                     description="Você não possui nenhuma notificação no momento."
                 />
             )}
 
-            {hasProducts && (
+            {hasNotifications && (
                 <View style={{
                     marginTop: 40
                 }}>

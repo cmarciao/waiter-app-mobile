@@ -11,6 +11,7 @@ export function useNotificationsList() {
         notifications,
         loadNotifications,
         isFetchingNotifications,
+        isLoadingNotifications,
         isLoadNotificationsError,
     } = useNotifications();
     
@@ -28,6 +29,7 @@ export function useNotificationsList() {
         notifications,
         loadNotifications,
         isFetchingNotifications,
+        isLoadingNotifications,
         isLoadNotificationsError
     };
 }

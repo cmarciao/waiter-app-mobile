@@ -27,6 +27,7 @@ export function OrderItem({ title, ordersList }: OrderItemProps) {
                 data={ordersList}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={{ gap: 8 }}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View style={{
                         padding: 24,

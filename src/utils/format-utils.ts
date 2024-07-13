@@ -1,4 +1,6 @@
 import { OrderState } from "@/types/Order";
+import { ResponseError } from "@/types/ResponseError";
+import { AxiosError } from "axios";
 
 export function formatPrice(price: number) {
 	return new Intl.NumberFormat('pt-BR', {
@@ -77,4 +79,9 @@ export function formatOrderStateToNotificationMessage(orderState: string): strin
 			return 'Pronto';
 		}
 	}
+}
+
+export function formatAxiosErrorToResponseError(error: unknown): ResponseError {
+	const axiosError = error as AxiosError;
+	return axiosError.response?.data as ResponseError;
 }

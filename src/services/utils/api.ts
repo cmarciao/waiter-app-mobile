@@ -9,7 +9,9 @@ const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
     const token = await StorageService.getData(storageNames.accessToken);
-
+    
+    config.headers['User-Agent'] = 'mobile';
+    
     if(token) {
         config.headers.Authorization = `Bearer ${token}`;
     }

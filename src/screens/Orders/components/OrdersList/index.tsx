@@ -39,8 +39,8 @@ export function OrdersList() {
                 <>
                     {inProgressOrders.length > 0 && (
                         <OrderItem
-                        title="Em andamento"
-                        ordersList={inProgressOrders}
+                            title="Em andamento"
+                            ordersList={inProgressOrders}
                         />
                     )}
 
