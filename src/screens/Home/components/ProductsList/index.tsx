@@ -1,7 +1,9 @@
 import { FlatList } from "react-native";
+
+import { Product } from "@/types/Product";
+import { EmptyIcon } from "@components/Icons/EmptyIcon";
+
 import { ProductItem } from "../ProductItem";
-import { Product } from "../../../../types/Product";
-import { EmptyIcon } from "../../../../components/Icons/EmptyIcon";
 import { EmptyContainer, EmptyText } from "./styles";
 
 type ProductsListProps = {

@@ -1,5 +1,5 @@
 import { FlatList } from "react-native";
-import { Ingredient } from "../../../../../../types/Ingredient";
+import { Ingredient } from "@/types/Ingredient";
 import { IngredientItem } from "../IngredientItem";
 
 type IngredientsListProps = {

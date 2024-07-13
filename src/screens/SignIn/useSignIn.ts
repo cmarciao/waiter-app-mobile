@@ -7,9 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Toast from "react-native-toast-message";
 import { SignInResponse } from "../../services/AuthService";
 import StorageService from "../../services/storage/StorageService";
-import { ResponseError } from '../../types/ResponseError';
+import { ResponseError } from '@/types/ResponseError';
 import { storageNames } from "../../constants/storage-names";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 
 const signInSchema = z.object({
     email: z.string({ message: 'Please, type your email.' }).email('Invalid email.'),

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOrder } from "../../../../hooks/useOrder";
+import { useOrder } from "@/hooks/useOrder";
 
 export function useAddTableModal(onClose: () => void) {
     const { updateTable } = useOrder();

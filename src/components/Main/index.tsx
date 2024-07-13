@@ -5,7 +5,7 @@ import { Routes } from "../../routes";
 import StorageService from "../../services/storage/StorageService";
 import { AsyncStorageService } from "../../services/storage/AsyncStorageService";
 
-import { useSplashScreen } from "../../hooks/useSplashScreen";
+import { useSplashScreen } from "@hooks/useSplashScreen";
 import { Container } from "./styles";
 import { AuthProvider } from "../../contexts/AuthContext";
 

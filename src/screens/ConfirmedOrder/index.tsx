@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { CheckIcon } from "../../components/Icons/CheckIcon";
-import { Text } from "../../components/Text";
-import { Container } from "./styles";
-import { useOrder } from "../../hooks/useOrder";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+import { useOrder } from "@hooks/useOrder";
+import { Text } from "@components/Text";
+import { CheckIcon } from "@components/Icons/CheckIcon";
+
+import { Container } from "./styles";
 
 type ConfirmedOrderProps = NativeStackScreenProps<{}>;
 

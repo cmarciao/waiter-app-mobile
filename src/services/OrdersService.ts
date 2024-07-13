@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
-import { ResponseError } from "../types/ResponseError";
+import { ResponseError } from "@/types/ResponseError";
 import { api } from "./utils/api";
-import { Order } from "../types/Order";
+import { Order } from "@/types/Order";
 
 export type CreateOrderRequest = {
     table: string;

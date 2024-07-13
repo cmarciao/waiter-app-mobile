@@ -1,5 +1,5 @@
 import { PressableProps } from "react-native";
-import { Text } from "../../../../components/Text";
+import { Text } from "@components/Text";
 import { Container, Icon } from "./styles";
 
 type CategoryItemProps = {

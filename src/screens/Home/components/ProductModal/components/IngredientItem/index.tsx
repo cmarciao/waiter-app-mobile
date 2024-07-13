@@ -1,5 +1,6 @@
-import { Text } from "../../../../../../components/Text"
-import { Ingredient } from "../../../../../../types/Ingredient"
+import { Text } from "@components/Text"
+import { Ingredient } from "@/types/Ingredient"
+
 import { Container } from "./styles"
 
 type IngredientItemProps = Omit<Ingredient, 'id'>

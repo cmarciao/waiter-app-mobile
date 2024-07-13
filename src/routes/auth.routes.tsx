@@ -1,19 +1,19 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Home } from "../screens/Home";
-import { Orders } from "../screens/Orders";
-import { Loading } from "../screens/Loading";
-import { Profile } from "../screens/Profile";
-import { Notifications } from "../screens/Notifications";
-import { ConfirmedOrder } from "../screens/ConfirmedOrder";
+import { Home } from "@screens/Home";
+import { Orders } from "@screens/Orders";
+import { Loading } from "@screens/Loading";
+import { Profile } from "@screens/Profile";
+import { Notifications } from "@screens/Notifications";
+import { ConfirmedOrder } from "@screens/ConfirmedOrder";
 
-import { TabItem } from "../components/TabItem";
-import { HomeIcon } from "../components/Icons/HomeIcon";
-import { OrdersIcon } from "../components/Icons/OrdersIcons";
-import { ProfileIcon } from "../components/Icons/ProfileIcon";
+import { TabItem } from "@components/TabItem";
+import { HomeIcon } from "@components/Icons/HomeIcon";
+import { OrdersIcon } from "@components/Icons/OrdersIcons";
+import { ProfileIcon } from "@components/Icons/ProfileIcon";
 
-import { useOrder } from "../hooks/useOrder";
+import { useOrder } from "@hooks/useOrder";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 
-import { Product } from "../types/Product";
-import { CartItem } from "../types/CartItem";
+import { Product } from "@/types/Product";
+import { CartItem } from "@/types/CartItem";
 import OrdersService, { CreateOrderRequest, Response } from "../services/OrdersService";
 
 type OderContextProps = {

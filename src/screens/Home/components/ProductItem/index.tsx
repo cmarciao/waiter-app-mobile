@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Image, Pressable } from "react-native";
 
-import { Text } from "../../../../components/Text";
-import { AddIcon } from "../../../../components/Icons/AddIcon";
+import { useOrder } from "@hooks/useOrder";
+import { Text } from "@components/Text";
+import { AddIcon } from "@components/Icons/AddIcon";
+
+import { Product } from "@/types/Product";
+import { formatPrice } from "@utils/format-utils";
+
 import { ProductModal } from "../ProductModal";
-
-import { formatPrice } from "../../../../utils/format-utils";
-import { Product } from "../../../../types/Product";
-
 import { Container, FooterInformations, Informations } from "./styles";
-import { useOrder } from "../../../../hooks/useOrder";
 
 type ProductItemProps = {
     product: Product;

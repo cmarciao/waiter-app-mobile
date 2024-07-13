@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { sleep } from "../../utils/sleep";
+import { sleep } from "@/utils/sleep";
 
-import { Text } from "../../components/Text";
-import { AnimatedLoading } from "../../components/AnimatedLoading";
+import { Text } from "@/components/Text";
+import { AnimatedLoading } from "@/components/AnimatedLoading";
 
 import { Container, Subtitle, Title } from "./styles";
 

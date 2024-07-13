@@ -1,8 +1,8 @@
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
 
-import { useOrder } from "../../../../hooks/useOrder";
-import { ResponseError } from "../../../../types/ResponseError";
+import { useOrder } from "@hooks/useOrder";
+import { ResponseError } from "@/types/ResponseError";
 
 export function useCart() {
     const {

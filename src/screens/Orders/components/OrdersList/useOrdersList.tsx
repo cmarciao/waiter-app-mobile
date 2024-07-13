@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { OrderState } from "../../../../types/Order";
-import { useOrders } from "../../../../hooks/useOrders";
-import { useWebsocket } from "../../../../hooks/useWebsocket";
+import { OrderState } from "@/types/Order";
+import { useOrders } from "@hooks/useOrders";
+import { useWebsocket } from "@hooks/useWebsocket";
 
 export function useOrdersList() {
     const queryClient = useQueryClient();

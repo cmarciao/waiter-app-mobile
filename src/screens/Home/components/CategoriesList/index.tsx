@@ -1,6 +1,6 @@
 import { FlatList, View } from "react-native";
+import { Category } from "@/types/Category";
 import { CategoryItem } from "../CategoryItem";
-import { Category } from "../../../../types/Category";
 
 type CategoriesListProps = {
     categories: Category[];

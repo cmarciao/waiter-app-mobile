@@ -1,6 +1,6 @@
-import { ResponseError } from "../types/ResponseError";
+import { ResponseError } from "@/types/ResponseError";
 import { api } from "./utils/api";
-import { Me } from "../types/Profile";
+import { Me } from "@/types/Profile";
 
 export type SignInRequest = {
     email: string;

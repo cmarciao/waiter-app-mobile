@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Animated, Easing } from "react-native";
 import { LoadingIcon } from "../Icons/LoadingIcon";
-import { IconProps } from "../../types/IconProps";
+import { IconProps } from "@/types/IconProps";
 
 type AnimatedLoadingProps = IconProps & {
     size?: number;

@@ -1,8 +1,8 @@
 import { Controller } from "react-hook-form";
 
-import { Text } from "../../components/Text";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { Text } from "@components/Text";
+import { Input } from "@components/Input";
+import { Button } from "@components/Button";
 
 import { useSignIn } from "./useSignIn";
 

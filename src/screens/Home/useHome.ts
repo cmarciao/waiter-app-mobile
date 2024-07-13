@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useOrder } from "../../hooks/useOrder";
-import { useProducts } from "../../hooks/useProducts";
-import { useCategories } from "../../hooks/useCategories";
+import { useOrder } from "@hooks/useOrder";
+import { useProducts } from "@hooks/useProducts";
+import { useCategories } from "@hooks/useCategories";
 
 export function useHome() {
     const queryClient = useQueryClient();

@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 
+import { AnimatedLoading } from "@/components/AnimatedLoading";
+
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
 import { ProductsList } from "./components/ProductsList";
 import { AddTableModal } from "./components/AddTableModal";
 import { CategoriesList } from "./components/CategoriesList";
-import { AnimatedLoading } from "../../components/AnimatedLoading";
 
 import { useHome } from "./useHome";
 import { Container, LoadingContainer } from "./styles";

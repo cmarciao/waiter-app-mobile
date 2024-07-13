@@ -1,14 +1,14 @@
 import { Image, Modal, View } from "react-native";
 
-import { Text } from "../../../../components/Text";
-import { Button } from "../../../../components/Button";
+import { Text } from "@components/Text";
+import { Button } from "@components/Button";
+import { CloseIcon } from "@components/Icons/CloseIcon";
+
+import { useOrder } from "@hooks/useOrder";
+import { useProductById } from "@hooks/useProductById";
+import { formatPrice } from "@utils/format-utils";
+
 import { IngredientsList } from "./components/IngredientList";
-import { CloseIcon } from "../../../../components/Icons/CloseIcon";
-
-import { useOrder } from "../../../../hooks/useOrder";
-import { useProductById } from "../../../../hooks/useProductById";
-import { formatPrice } from "../../../../utils/format-utils";
-
 import { CloseButton, Content, Description, Footer, Ingredients, Overlay } from "./styles";
 
 type ProductModalProps = {

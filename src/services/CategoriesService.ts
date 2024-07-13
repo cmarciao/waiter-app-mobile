@@ -1,5 +1,5 @@
 import { api } from "./utils/api";
-import { Category } from "../types/Category";
+import { Category } from "@/types/Category";
 
 class CategoriesService {
     async listAll(): Promise<Category[]> {

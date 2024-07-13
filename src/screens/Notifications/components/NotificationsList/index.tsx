@@ -1,12 +1,11 @@
 import { FlatList, View } from "react-native";
-import { EmptyIcon } from "../../../../components/Icons/EmptyIcon";
-import { Text } from "../../../../components/Text";
+import { EmptyIcon } from "@components/Icons/EmptyIcon";
 import { useNotificationsList } from "./useNotificationsList";
 import { NotificationItem } from "../NotificationItem";
 
 import { EmptyContainer, EmptyText } from "./styles";
 import { LoadingContainer } from "../../../Home/styles";
-import { AnimatedLoading } from "../../../../components/AnimatedLoading";
+import { AnimatedLoading } from "@components/AnimatedLoading";
 
 export function NotificationsList() {
     const {

@@ -1,6 +1,6 @@
-import { Product } from '../types/Product';
+import { Product } from '@/types/Product';
 import { api } from './utils/api';
-import { ResponseError } from '../types/ResponseError';
+import { ResponseError } from '@/types/ResponseError';
 
 class ProductsService {
     async listAll(): Promise<Product[]> {

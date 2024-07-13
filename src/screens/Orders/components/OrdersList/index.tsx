@@ -1,8 +1,9 @@
+import { EmptyIcon } from "@/components/Icons/EmptyIcon";
+import { LoadingContainer } from "@/screens/Home/styles";
+import { AnimatedLoading } from "@/components/AnimatedLoading";
+
 import { OrderItem } from "../OrderItem";
 import { useOrdersList } from "./useOrdersList";
-import { LoadingContainer } from "../../../Home/styles";
-import { EmptyIcon } from "../../../../components/Icons/EmptyIcon";
-import { AnimatedLoading } from "../../../../components/AnimatedLoading";
 import { EmptyContainer, EmptyText } from "./styles";
 
 export function OrdersList() {

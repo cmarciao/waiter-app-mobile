@@ -4,7 +4,7 @@ import { OrderProvider } from '../contexts/OrderContext';
 import { AuthRoutes } from './auth.routes';
 import { PublicRoutes } from './public.routes';
 
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@hooks/useAuth';
 import { WebSocketProvider } from '../contexts/WebSocketContext';
 
 export function Routes() {

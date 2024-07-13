@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import styled from "styled-components/native";
 
 import { Text } from "../Text";
-import { IconProps } from "../../types/IconProps";
+import { IconProps } from "@/types/IconProps";
 import { View } from "react-native";
 
 type TabItemProps = {

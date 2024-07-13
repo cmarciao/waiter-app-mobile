@@ -1,11 +1,11 @@
 import { FlatList, Pressable, View } from "react-native";
 
-import { formatPrice } from "../../../../utils/format-utils";
+import { formatPrice } from "@utils/format-utils";
 
-import { Text } from "../../../../components/Text";
-import { Button } from "../../../../components/Button";
-import { AddIcon } from "../../../../components/Icons/AddIcon";
-import { MinusIcon } from "../../../../components/Icons/MinusIcon";
+import { Text } from "@components/Text";
+import { Button } from "@components/Button";
+import { AddIcon } from "@components/Icons/AddIcon";
+import { MinusIcon } from "@components/Icons/MinusIcon";
 
 import {
     Actions,

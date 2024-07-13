@@ -1,8 +1,8 @@
 import { Pressable } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { Text } from "../../components/Text";
-import { ArrowLeft } from "../../components/Icons/ArrowLeft";
+import { Text } from "@components/Text";
+import { ArrowLeft } from "@components/Icons/ArrowLeft";
 import { NotificationsList } from "./components/NotificationsList";
 
 import { Container, Header } from "./styles";

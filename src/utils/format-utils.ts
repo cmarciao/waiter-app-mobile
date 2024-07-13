@@ -1,4 +1,4 @@
-import { OrderState } from "../types/Order";
+import { OrderState } from "@/types/Order";
 
 export function formatPrice(price: number) {
 	return new Intl.NumberFormat('pt-BR', {

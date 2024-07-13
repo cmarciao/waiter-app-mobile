@@ -1,11 +1,11 @@
 import { FlatList, View } from "react-native";
-import { Text } from "../../../../components/Text";
-import { Order, OrderState } from "../../../../types/Order";
+import { Text } from "@components/Text";
+import { Order, OrderState } from "@/types/Order";
 
 import {
     formatOrderStateToOrderMessage,
     formatOrderStatusColor
-} from "../../../../utils/format-utils";
+} from "@utils/format-utils";
 
 type OrderItemProps = {
     title: string;

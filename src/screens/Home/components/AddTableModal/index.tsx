@@ -1,9 +1,9 @@
 import { Modal, Pressable } from "react-native";
 
-import { Text } from "../../../../components/Text";
-import { Input } from "../../../../components/Input";
-import { Button } from "../../../../components/Button";
-import { CloseIcon } from "../../../../components/Icons/CloseIcon";
+import { Text } from "@/components/Text";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
+import { CloseIcon } from "@/components/Icons/CloseIcon";
 
 import { useAddTableModal } from "./useAddTableModal";
 import { Content, Overlay, Header, Form } from "./styles";

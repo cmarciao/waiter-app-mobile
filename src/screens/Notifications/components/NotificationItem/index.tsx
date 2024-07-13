@@ -1,8 +1,8 @@
-import { Text } from "../../../../components/Text";
+import { Text } from "@components/Text";
 
-import { Notification } from "../../../../types/Notification";
-import { pastTime } from "../../../../utils/past-time";
-import { formatOrderStateToIcon, formatOrderStateToNotificationMessage } from "../../../../utils/format-utils";
+import { Notification } from "@/types/Notification";
+import { pastTime } from "@utils/past-time";
+import { formatOrderStateToIcon, formatOrderStateToNotificationMessage } from "@utils/format-utils";
 
 import { Container, Content, Description, NewNotificationIcon } from "./styles";
 

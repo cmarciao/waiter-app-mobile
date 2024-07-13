@@ -1,11 +1,11 @@
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-import { useAuth } from "../../../../hooks/useAuth";
-import { useOrder } from "../../../../hooks/useOrder";
+import { useAuth } from "@hooks/useAuth";
+import { useOrder } from "@hooks/useOrder";
 
-import { Text } from "../../../../components/Text";
-import { Button } from "../../../../components/Button";
-import { NotificationIcon } from "../../../../components/Icons/NotificationIcons";
+import { Text } from "@components/Text";
+import { Button } from "@components/Button";
+import { NotificationIcon } from "@components/Icons/NotificationIcons";
 
 import {
     Container,

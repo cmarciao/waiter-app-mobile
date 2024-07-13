@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useWebsocket } from "../../../../hooks/useWebsocket";
-import { useNotifications } from "../../../../hooks/useNotifications";
+import { useWebsocket } from "@hooks/useWebsocket";
+import { useNotifications } from "@hooks/useNotifications";
 
 export function useNotificationsList() {
     const queryClient = useQueryClient();

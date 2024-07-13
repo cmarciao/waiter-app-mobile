@@ -1,5 +1,5 @@
 import { SvgXml } from "react-native-svg";
-import { IconProps } from "../../types/IconProps";
+import { IconProps } from "@/types/IconProps";
 
 export function CheckIcon({ color }: IconProps) {
     const markup = `
