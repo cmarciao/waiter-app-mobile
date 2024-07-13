@@ -1,24 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
-import { Notification } from "../../../../types/Notification";
-import NotificationsService from "../../../../services/NotificationsService";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+
 import { useWebsocket } from "../../../../hooks/useWebsocket";
+import { useNotifications } from "../../../../hooks/useNotifications";
 
 export function useNotificationsList() {
+    const queryClient = useQueryClient();
     const { subscribe, unsubscribe } = useWebsocket();
-    const [notifications, setNotifications] = useState<Notification[]>([]);
-
-    const loadNotifications = useCallback(async () => {
-		const notifications = await NotificationsService.listAll();
-        setNotifications(notifications);
-	}, []);
-
-    useEffect(() => {
-        loadNotifications();
-    }, []);
-
+    const { notifications, isLoadingNotifications } = useNotifications();
+    
     useEffect(() => {
 		subscribe('orders@update', () => {
-			loadNotifications();
+			queryClient.invalidateQueries({ queryKey: ['notifications'] });
 		});
 
 		return () => {
@@ -27,6 +20,7 @@ export function useNotificationsList() {
 	}, []);
 
     return {
-        notifications
+        notifications,
+        isLoadingNotifications
     };
 }

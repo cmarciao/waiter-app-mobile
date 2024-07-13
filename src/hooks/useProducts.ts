@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import ProductsService from "../services/ProductsService";
 
 export function useProducts(categoryId: string = '') {
-    const { data, isFetching, refetch } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             return categoryId === ''
@@ -13,7 +13,6 @@ export function useProducts(categoryId: string = '') {
 
     return {
         products: data || [],
-        isLoadingProducts: isFetching,
-        loadProducts: refetch
+        isLoadingProducts: isFetching
     };
 }

@@ -11,6 +11,10 @@ export function pastTime(data: Date) {
     } else if (minutes > 0) {
         return `Há ${minutes} minuto${minutes === 1 ? '' : 's'}`;
     } else {
+        if (seconds <= 0) {
+            return 'Agora mesmo';
+        }
+        
         return `${seconds} segundo${seconds === 1 ? '' : 's'}`;
     }
 }

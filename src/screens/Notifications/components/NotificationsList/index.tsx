@@ -5,15 +5,27 @@ import { useNotificationsList } from "./useNotificationsList";
 import { NotificationItem } from "../NotificationItem";
 
 import { EmptyContainer, EmptyText } from "./styles";
+import { LoadingContainer } from "../../../Home/styles";
+import { AnimatedLoading } from "../../../../components/AnimatedLoading";
 
 export function NotificationsList() {
     const {
-        notifications
+        notifications,
+        isLoadingNotifications
     } = useNotificationsList();
 
     return (
         <>
-        {notifications.length === 0 && (
+        {isLoadingNotifications && (
+            <LoadingContainer>
+                <AnimatedLoading
+                    size={54}
+                    color="#D73035"
+                />
+            </LoadingContainer>
+        )}
+
+        {!isLoadingNotifications && notifications.length === 0 && (
                 <EmptyContainer>
                     <EmptyIcon />
 
