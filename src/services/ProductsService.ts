@@ -9,13 +9,8 @@ class ProductsService {
     }
 
     async getById(id: string) {
-        try {
-            const response = await api.get(`/products/${id}`);
-            return response.data as Product;
-        } catch (e) {
-            const error = e as ResponseError;
-            return error;
-        }
+        const response = await api.get(`/products/${id}`);
+        return response.data as Product;
     }
 
     async getByCategoryId(categoryId: string) {

@@ -1,6 +1,7 @@
-import { z } from 'zod';
 import { useRef } from 'react';
 import { TextInput } from 'react-native';
+import { useMutation } from '@tanstack/react-query';
+import { z } from 'zod';
 import { useForm } from "react-hook-form";
 import Toast from 'react-native-toast-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -42,10 +43,14 @@ export function useProfile() {
         defaultValues: async () => UsersService.me()
     });
 
+    const { mutateAsync: updateProfile, isPending: isUpdatingProfile } = useMutation({
+        mutationFn: UsersService.updateProfile
+    });
+
     const handleSaveProfile = handleSubmit(async (data: ProfileSchema) => {
         const { confirmPassword, ...profile } = data;
 
-        await UsersService.meUpdate(profile);
+        await updateProfile(profile);
 
         Toast.show({
             type: 'success',
@@ -60,6 +65,7 @@ export function useProfile() {
         emailInputRef,
         passwordInputRef,
         confirmPasswordInputRef,
+        isUpdatingProfile,
         handleSaveProfile
     }
 }

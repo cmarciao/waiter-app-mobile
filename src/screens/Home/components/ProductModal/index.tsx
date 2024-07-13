@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
 import { Image, Modal, View } from "react-native";
 
 import { Text } from "../../../../components/Text";
 import { Button } from "../../../../components/Button";
+import { IngredientsList } from "./components/IngredientList";
 import { CloseIcon } from "../../../../components/Icons/CloseIcon";
 
+import { useOrder } from "../../../../hooks/useOrder";
+import { useProductById } from "../../../../hooks/useProductById";
 import { formatPrice } from "../../../../utils/format-utils";
 
-import { Product } from "../../../../types/Product";
-import { ResponseError } from "../../../../types/ResponseError";
-import ProductsService from "../../../../services/ProductsService";
-
 import { CloseButton, Content, Description, Footer, Ingredients, Overlay } from "./styles";
-import { IngredientsList } from "./components/IngredientList";
-import { useOrder } from "../../../../hooks/useOrder";
 
 type ProductModalProps = {
     isOpen: boolean;
@@ -22,24 +18,8 @@ type ProductModalProps = {
 }
 
 export function ProductModal({ id, isOpen, onCloseModal }: ProductModalProps) {
+    const { product } = useProductById(id);
     const { handleAddToCart } = useOrder();
-    const [product, setProduct] = useState<Product | null>(null);
-
-    useEffect(() => {
-        if (isOpen) {
-            async function loadData() {
-                const response = await ProductsService.getById(id)
-
-                if ((response as ResponseError)?.error) {
-                    return;
-                }
-
-                setProduct(response as Product);
-            }
-
-            loadData();
-        }
-    }, [isOpen]);
 
     if (!product) return;
 

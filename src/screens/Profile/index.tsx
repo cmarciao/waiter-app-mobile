@@ -14,6 +14,7 @@ export function Profile() {
         emailInputRef,
         passwordInputRef,
         confirmPasswordInputRef,
+        isUpdatingProfile,
         handleSaveProfile
     } = useProfile();
 
@@ -103,6 +104,7 @@ export function Profile() {
                 <Button
                     style={{ marginTop: 16 }}
                     onPress={handleSaveProfile}
+                    disabled={isUpdatingProfile}
                 >
                     Salvar alterações
                 </Button>

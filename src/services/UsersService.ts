@@ -26,7 +26,7 @@ class UsersService {
         return respose.data;
     }
 
-    async meUpdate(data: MeUpdateRequest): Promise<Me> {
+    async updateProfile(data: MeUpdateRequest): Promise<Me> {
         const respose = await api.put('/users/me', data);
 
         return respose.data;
