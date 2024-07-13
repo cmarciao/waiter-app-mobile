@@ -1,6 +1,5 @@
 import Toast from "react-native-toast-message";
 import { useNavigation } from "@react-navigation/native";
-import OrdersService from "../../../../services/OrdersService";
 
 import { useOrder } from "../../../../hooks/useOrder";
 import { ResponseError } from "../../../../types/ResponseError";
@@ -9,6 +8,8 @@ export function useCart() {
     const {
         table,
         cartItems,
+        saveOrder,
+        isSavingOrder,
         handleAddToCart,
         handleDecremmentCartItem
     } = useOrder();
@@ -21,7 +22,7 @@ export function useCart() {
             )
         ).flat();
 
-        const response = await OrdersService.create({ table, productIds });
+        const response = await saveOrder({ table, productIds });
 
         if ((response as ResponseError)?.error) {
             const error = response as ResponseError;
@@ -50,6 +51,7 @@ export function useCart() {
     return {
         total,
         cartItems,
+        isSavingOrder,
         handleAddToCart,
         handleSaveOrder,
         handleDecremmentCartItem,

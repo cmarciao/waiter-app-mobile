@@ -17,6 +17,7 @@ export function Home() {
         products,
         isTableModalOpen,
         isLoadingProducts,
+        isLoadingCategories,
         selectedCatergoryId,
         handleSelectCategory,
         handleCloseTableModal
@@ -27,6 +28,14 @@ export function Home() {
             <StatusBar style="dark" />
 
             <Header />
+
+            {!isLoadingCategories && (
+                <CategoriesList
+                    categories={categories}
+                    selectedCatergoryId={selectedCatergoryId}
+                    onSelectCategory={handleSelectCategory}
+                />
+            )}
 
             {isLoadingProducts && (
                 <LoadingContainer>
@@ -39,11 +48,6 @@ export function Home() {
 
             {!isLoadingProducts && (
                 <>
-                    <CategoriesList
-                        categories={categories}
-                        selectedCatergoryId={selectedCatergoryId}
-                        onSelectCategory={handleSelectCategory}
-                    />
                     <ProductsList
                         products={products}
                     />

@@ -21,7 +21,7 @@ export function Header() {
     const { signOut } = useAuth();
     const { navigate } = useNavigation();
 
-    const { table, handleClearOrder } = useOrder();
+    const { table, handleClearOrder, isSavingOrder } = useOrder();
 
     return (
         <Container>
@@ -53,6 +53,7 @@ export function Header() {
                         <Button
                             secondary
                             onPress={handleClearOrder}
+                            disabled={isSavingOrder}
                         >
                             cancelar produto</Button>
                     </>

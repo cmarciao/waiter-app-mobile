@@ -23,6 +23,7 @@ export function Cart() {
     const {
         total,
         cartItems,
+        isSavingOrder,
         handleAddToCart,
         handleSaveOrder,
         handleDecremmentCartItem,
@@ -100,7 +101,7 @@ export function Cart() {
 
                 <Button
                     style={{ flex: 1 }}
-                    disabled={cartItems.length === 0}
+                    disabled={cartItems.length === 0 || isSavingOrder}
                     onPress={handleSaveOrder}
                 >
                     Confirmar pedido

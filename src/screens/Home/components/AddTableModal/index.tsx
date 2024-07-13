@@ -1,11 +1,12 @@
 import { Modal, Pressable } from "react-native";
+
 import { Text } from "../../../../components/Text";
-import { Content, Overlay, Header, Form } from "./styles";
-import { CloseIcon } from "../../../../components/Icons/CloseIcon";
 import { Input } from "../../../../components/Input";
 import { Button } from "../../../../components/Button";
-import { useOrder } from "../../../../hooks/useOrder";
-import { useState } from "react";
+import { CloseIcon } from "../../../../components/Icons/CloseIcon";
+
+import { useAddTableModal } from "./useAddTableModal";
+import { Content, Overlay, Header, Form } from "./styles";
 
 type AddTableModalProps = {
     isOpen: boolean;
@@ -13,14 +14,11 @@ type AddTableModalProps = {
 }
 
 export function AddTableModal({ isOpen, onClose }: AddTableModalProps) {
-    const { updateTable } = useOrder();
-    const [tableValue, setTableValue] = useState('');
-
-    function handleSaveTable() {
-        updateTable(tableValue);
-        setTableValue('');
-        onClose();
-    }
+    const {
+        fieldTableValue,
+        updateFieldTableValue,
+        handleSaveTable
+    } = useAddTableModal(onClose);
 
     return (
         <Modal
@@ -44,11 +42,11 @@ export function AddTableModal({ isOpen, onClose }: AddTableModalProps) {
                     <Form>
                         <Input
                             placeholder="Input the table number"
-                            value={tableValue}
-                            onChangeText={setTableValue}
+                            value={fieldTableValue}
+                            onChangeText={updateFieldTableValue}
                         />
 
-                        <Button disabled={!tableValue} onPress={handleSaveTable}>
+                        <Button disabled={!fieldTableValue} onPress={handleSaveTable}>
                             Save
                         </Button>
                     </Form>

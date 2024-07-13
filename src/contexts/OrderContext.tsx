@@ -1,12 +1,17 @@
 import { ReactNode, createContext, useState } from "react";
-import { CartItem } from "../types/CartItem";
+import { useMutation } from "@tanstack/react-query";
+
 import { Product } from "../types/Product";
+import { CartItem } from "../types/CartItem";
+import OrdersService, { CreateOrderRequest, Response } from "../services/OrdersService";
 
 type OderContextProps = {
     table: string;
     cartItems: CartItem[];
     isTableModalOpen: boolean;
     updateTable: (table: string) => void;
+    saveOrder: (params: CreateOrderRequest) => Promise<Response>;
+    isSavingOrder: boolean;
     handleAddToCart: (product: Product) => void
     handleDecremmentCartItem: (product: Product) => void
     handleOpenTableModal: () => void;
@@ -28,6 +33,10 @@ export function OrderProvider({ children }: OrderProviderProps) {
     function updateTable(table: string) {
         setTable(table);
     }
+
+    const {mutateAsync: saveOrder, isPending: isSavingOrder} = useMutation({
+        mutationFn: OrdersService.create
+    })
 
     function handleOpenTableModal() {
         setIsTableModalOpen(true);
@@ -99,7 +108,9 @@ export function OrderProvider({ children }: OrderProviderProps) {
             table,
             cartItems,
             isTableModalOpen,
+            isSavingOrder,
             updateTable,
+            saveOrder,
             handleAddToCart,
             handleDecremmentCartItem,
             handleOpenTableModal,
