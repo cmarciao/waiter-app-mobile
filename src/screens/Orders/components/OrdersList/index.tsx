@@ -1,18 +1,20 @@
-import { EmptyIcon } from "@/components/Icons/EmptyIcon";
 import { LoadingContainer } from "@/screens/Home/styles";
 import { AnimatedLoading } from "@/components/AnimatedLoading";
 
 import { OrderItem } from "../OrderItem";
 import { useOrdersList } from "./useOrdersList";
-import { EmptyContainer, EmptyText } from "./styles";
+import { EmptyInformation } from "@/components/EmptyInformation";
 
 export function OrdersList() {
     const {
         inProgressOrders,
         historicOrders,
-        isLoadingOrders
+        loadOrders,
+        isLoadingOrders,
+        isLoadOrdersError
     } = useOrdersList();
 
+    const hasError = !isLoadingOrders && isLoadOrdersError;
     const hasEmpty = inProgressOrders.length === 0 && historicOrders.length === 0;
 
     return (
@@ -25,8 +27,15 @@ export function OrdersList() {
                     />
                 </LoadingContainer>
             )}
+
+            {hasError && (
+                <EmptyInformation
+                    description="Erro ao carregar seus pedidos, por favor, tente novamente."
+                    onTryAgain={loadOrders}
+                />
+            )}
             
-            {!isLoadingOrders && (
+            {!isLoadingOrders && !hasError && (
                 <>
                     {inProgressOrders.length > 0 && (
                         <OrderItem
@@ -45,14 +54,10 @@ export function OrdersList() {
                 </>
             )}
 
-            {!isLoadingOrders && hasEmpty && (
-                <EmptyContainer>
-                    <EmptyIcon />
-
-                    <EmptyText weight='500'>
-                        Você não possui nenhum pedido no momento.
-                    </EmptyText>
-                </EmptyContainer>
+            {!isLoadingOrders && hasEmpty && !hasError && (
+                <EmptyInformation
+                    description="Você não possui nenhum pedido no momento."
+                />
             )}
         </>
     )

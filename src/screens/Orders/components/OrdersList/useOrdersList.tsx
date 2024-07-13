@@ -7,7 +7,12 @@ import { useWebsocket } from "@hooks/useWebsocket";
 
 export function useOrdersList() {
     const queryClient = useQueryClient();
-    const { orders, isLoadingOrders } = useOrders();
+    const {
+        orders,
+        loadOrders,
+        isLoadingOrders,
+        isLoadOrdersError
+    } = useOrders();
     const { subscribe, unsubscribe } = useWebsocket();
     
     useEffect(() => {
@@ -24,8 +29,10 @@ export function useOrdersList() {
     const historicOrders = orders.filter((order) => order.orderState === OrderState.HISTORIC);
 
     return {
-        isLoadingOrders,
         inProgressOrders,
-        historicOrders
+        historicOrders,
+        loadOrders,
+        isLoadingOrders,
+        isLoadOrdersError
     }
 }

@@ -25,12 +25,12 @@ export const CloseButton = styled.Pressable`
 export const Description = styled.View`
     flex: 1;
     margin: 32px 24px 0;
-    gap: 16;
+    gap: 16px;
 `;
 
 export const Ingredients = styled.View`
     flex: 1;
-    margin-top: 16;
+    margin-top: 16px;
 `;
 
 export const Footer = styled.View`

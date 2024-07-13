@@ -53,7 +53,7 @@ function HomeTab() {
                 options={{
                     tabBarButton: () => (
                         <TabItem
-                            title="Home"
+                            title="Produtos"
                             href="home-stack"
                             icon={HomeIcon}
                         />
@@ -67,7 +67,7 @@ function HomeTab() {
                 options={{
                     tabBarButton: () => (
                         <TabItem
-                            title="Orders"
+                            title="Pedidos"
                             href="orders"
                             icon={OrdersIcon}
                         />
@@ -81,7 +81,7 @@ function HomeTab() {
                 options={{
                     tabBarButton: () => (
                         <TabItem
-                            title="Profile"
+                            title="Meu Perfil"
                             href="profile"
                             icon={ProfileIcon}
                         />

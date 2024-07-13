@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 
 import { AnimatedLoading } from "@/components/AnimatedLoading";
+import { EmptyInformation } from "@/components/EmptyInformation";
 
 import { Cart } from "./components/Cart";
 import { Header } from "./components/Header";
@@ -19,10 +20,16 @@ export function Home() {
         isTableModalOpen,
         isLoadingProducts,
         isLoadingCategories,
+        isFetchingProducts,
+        isFetchingProductsError,
+        isLoadingCategoriesError,
         selectedCatergoryId,
+        handleTryLoadDatasAgain,
         handleSelectCategory,
         handleCloseTableModal
     } = useHome();
+
+    const hasError = isLoadingCategoriesError || isFetchingProductsError;
 
     return (
         <Container>
@@ -30,7 +37,14 @@ export function Home() {
 
             <Header />
 
-            {!isLoadingCategories && (
+            {hasError && (
+                <EmptyInformation
+                    description="Ocorreu algum erro ao carregar os produtos, por favor, tente novamente."
+                    onTryAgain={handleTryLoadDatasAgain}
+                />
+            )}
+
+            {!isLoadingCategories && !isLoadingProducts && !hasError  && (
                 <CategoriesList
                     categories={categories}
                     selectedCatergoryId={selectedCatergoryId}
@@ -38,7 +52,7 @@ export function Home() {
                 />
             )}
 
-            {isLoadingProducts && (
+            {isFetchingProducts && (
                 <LoadingContainer>
                     <AnimatedLoading
                         size={54}
@@ -47,7 +61,7 @@ export function Home() {
                 </LoadingContainer>
             )}
 
-            {!isLoadingProducts && (
+            {!isFetchingProducts && !hasError &&  (
                 <>
                     <ProductsList
                         products={products}

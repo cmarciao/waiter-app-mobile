@@ -11,9 +11,17 @@ export function useHome() {
     
     const {
         products,
-        isLoadingProducts
+        refetchProducts,
+        isFetchingProducts,
+        isLoadingProducts,
+        isFetchingProductsError
     } = useProducts(selectedCatergoryId);
-    const { categories, isLoadingCategories } = useCategories();
+    const {
+        categories,
+        refetchCategories,
+        isLoadingCategories,
+        isLoadingCategoriesError
+    } = useCategories();
     const { table, isTableModalOpen, handleCloseTableModal } = useOrder();
 
     useEffect(() => {
@@ -25,14 +33,25 @@ export function useHome() {
         setSelectedCatergoryId(id);
     }
 
+    function handleTryLoadDatasAgain() {
+        Promise.all([
+            refetchProducts(),
+            refetchCategories()
+        ]).then();
+    }
+
     return {
         table,
         categories,
         products,
         isTableModalOpen,
         isLoadingProducts,
+        isFetchingProducts,
+        isFetchingProductsError,
         isLoadingCategories,
+        isLoadingCategoriesError,
         selectedCatergoryId,
+        handleTryLoadDatasAgain,
         handleSelectCategory,
         handleCloseTableModal
     }

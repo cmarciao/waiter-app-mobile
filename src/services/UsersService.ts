@@ -22,13 +22,11 @@ export type Response = SignInResponse | ResponseError;
 class UsersService {
     async me(): Promise<Me> {
         const respose = await api.get('/users/me');
-
         return respose.data;
     }
 
     async updateProfile(data: MeUpdateRequest): Promise<Me> {
         const respose = await api.put('/users/me', data);
-
         return respose.data;
     }
 }

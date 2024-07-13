@@ -7,7 +7,12 @@ import { useNotifications } from "@hooks/useNotifications";
 export function useNotificationsList() {
     const queryClient = useQueryClient();
     const { subscribe, unsubscribe } = useWebsocket();
-    const { notifications, isLoadingNotifications } = useNotifications();
+    const {
+        notifications,
+        loadNotifications,
+        isFetchingNotifications,
+        isLoadNotificationsError,
+    } = useNotifications();
     
     useEffect(() => {
 		subscribe('orders@update', () => {
@@ -21,6 +26,8 @@ export function useNotificationsList() {
 
     return {
         notifications,
-        isLoadingNotifications
+        loadNotifications,
+        isFetchingNotifications,
+        isLoadNotificationsError
     };
 }

@@ -12,8 +12,8 @@ import { storageNames } from "../../constants/storage-names";
 import { useAuth } from "@hooks/useAuth";
 
 const signInSchema = z.object({
-    email: z.string({ message: 'Please, type your email.' }).email('Invalid email.'),
-    password: z.string({ message: 'Please, type your password.' }).min(8, { message: 'Min 8 characters.' })
+    email: z.string({ message: 'Por favor, insira seu email.' }).email('Email inválido.'),
+    password: z.string({ message: 'Por favor, insira sua senha.' }).min(8, { message: 'Mínimo de 8 caracteres.' })
 });
 
 type SignInSchema = z.infer<typeof signInSchema>
@@ -38,8 +38,8 @@ export function useSignIn() {
 
             Toast.show({
                 type: 'success',
-                text1: 'Welcome to WaiterApp.',
-                text2: 'Have a good appetite!'
+                text1: 'Bem-vindo ao WaiterApp.',
+                text2: 'Tenha um bom trabalho!'
             });
         } catch (e) {
             const err = e as AxiosError;

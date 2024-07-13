@@ -5,6 +5,7 @@ export const EmptyContainer = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
+    background-color: #FFF;
 
     gap: 24px;
 `;

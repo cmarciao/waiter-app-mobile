@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import UsersService from '../../services/UsersService';
+import { useMe } from '@/hooks/useMe';
 
 const profileSchema = z.object({
     name: z.string({ message: 'Por favor, insira um nome.' }),
@@ -38,9 +39,10 @@ export function useProfile() {
     const passwordInputRef = useRef<TextInput>();
     const confirmPasswordInputRef = useRef<TextInput>();
 
+    const { me, loadMe, isFetchingMe, isFetchMeError } = useMe();
+
     const { control, handleSubmit, formState: { errors } } = useForm<ProfileSchema>({
         resolver: zodResolver(profileSchema),
-        defaultValues: async () => UsersService.me()
     });
 
     const { mutateAsync: updateProfile, isPending: isUpdatingProfile } = useMutation({
@@ -60,12 +62,16 @@ export function useProfile() {
     });
 
     return {
+        me,
         control,
         errors,
         emailInputRef,
         passwordInputRef,
         confirmPasswordInputRef,
+        isFetchingMe,
+        isFetchMeError,
         isUpdatingProfile,
+        loadMe,
         handleSaveProfile
     }
 }

@@ -10,7 +10,7 @@ export const Container = styled.Pressable<ContainerProps>`
             opacity: ${({ disabled }) => disabled ? 0.5: 1};
         ` :
         css`
-            padding: 18px 0;
+            padding: 18px 16px;
             border-radius: 8px;
             background-color: ${({ disabled }) => disabled ? '#999': '#D73035'};
         `
