@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { ResponseError } from "../types/ResponseError";
 import { api } from "./utils/api";
+import { Order } from "../types/Order";
 
 export type CreateOrderRequest = {
     table: string;
@@ -20,7 +21,7 @@ class OrderService {
         }
     }
 
-    async getOrders() {
+    async getOrders(): Promise<Order[]> {
         const response = await api.get('/orders');
         return response.data;
     }

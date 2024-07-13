@@ -16,16 +16,16 @@ export function NotificationsList() {
 
     return (
         <>
-        {isLoadingNotifications && (
-            <LoadingContainer>
-                <AnimatedLoading
-                    size={54}
-                    color="#D73035"
-                />
-            </LoadingContainer>
-        )}
+            {isLoadingNotifications && (
+                <LoadingContainer>
+                    <AnimatedLoading
+                        size={54}
+                        color="#D73035"
+                    />
+                </LoadingContainer>
+            )}
 
-        {!isLoadingNotifications && notifications.length === 0 && (
+            {!isLoadingNotifications && notifications.length === 0 && (
                 <EmptyContainer>
                     <EmptyIcon />
 

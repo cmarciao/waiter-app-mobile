@@ -1,24 +1,30 @@
-import { useEffect, useState } from "react";
-import OrdersService from "../../../../services/OrdersService";
-import { Order, OrderState } from "../../../../types/Order";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+
+import { OrderState } from "../../../../types/Order";
+import { useOrders } from "../../../../hooks/useOrders";
+import { useWebsocket } from "../../../../hooks/useWebsocket";
 
 export function useOrdersList() {
-    const [orders, setOrders] = useState<Order[]>([]);
-
+    const queryClient = useQueryClient();
+    const { orders, isLoadingOrders } = useOrders();
+    const { subscribe, unsubscribe } = useWebsocket();
+    
     useEffect(() => {
-        async function loadOrders() {
-            const orders = await OrdersService.getOrders();
+		subscribe('orders@update', () => {
+			queryClient.invalidateQueries({ queryKey: ['orders'] });
+		});
 
-            setOrders(orders);
-        }
-
-        loadOrders();
-    }, []);
-
+		return () => {
+			unsubscribe('orders@update');
+		};
+	}, []);
+   
     const inProgressOrders = orders.filter((order) => order.orderState !== OrderState.HISTORIC);
     const historicOrders = orders.filter((order) => order.orderState === OrderState.HISTORIC);
 
     return {
+        isLoadingOrders,
         inProgressOrders,
         historicOrders
     }
