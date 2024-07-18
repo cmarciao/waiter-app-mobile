@@ -1,11 +1,10 @@
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-import { useAuth } from "@hooks/useAuth";
-import { useOrder } from "@hooks/useOrder";
-
 import { Text } from "@components/Text";
 import { Button } from "@components/Button";
 import { NotificationIcon } from "@components/Icons/NotificationIcons";
+
+import { useHeader } from "./useHeader";
 
 import {
     Container,
@@ -13,15 +12,20 @@ import {
     ActionsContainer,
     Table,
     Title,
-    ActionButton
+    ActionButton,
+    NewNotificationIcon
 } from "./styles";
-import { useNavigation } from "@react-navigation/native";
+
 
 export function Header() {
-    const { signOut } = useAuth();
-    const { navigate } = useNavigation();
-
-    const { table, handleClearOrder, isSavingOrder } = useOrder();
+    const {
+        table,
+        signOut,
+        isSavingOrder,
+        hasNewNotifications,
+        handleNavigateToNotificationsScreen,
+        handleClearOrder,
+    } = useHeader();
 
     return (
         <Container>
@@ -36,8 +40,11 @@ export function Header() {
                         </Title>
 
                         <ActionsContainer>
-                            <ActionButton onPress={() => navigate('notification' as never)}>
+                            <ActionButton onPress={handleNavigateToNotificationsScreen}>
                                 <NotificationIcon />
+                                {hasNewNotifications && (
+                                    <NewNotificationIcon />
+                                )}
                             </ActionButton>
 
                             <ActionButton onPress={signOut}>

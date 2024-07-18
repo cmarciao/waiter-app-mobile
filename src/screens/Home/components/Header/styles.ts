@@ -34,4 +34,15 @@ export const ActionButton = styled.Pressable`
     border-radius: 9999px;
     elevation:1;
     shadowColor: #333333;
+    position: relative;
+    `;
+
+export const NewNotificationIcon = styled.View`
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #D73035;
+    position: absolute;
+    top: 2px;
+    right: 2px;
 `;

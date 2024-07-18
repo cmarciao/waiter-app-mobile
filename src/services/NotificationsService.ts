@@ -6,6 +6,16 @@ class NotificationsService {
         const response = await api.get<Notification[]>('/notifications');
         return response.data;
     }
+
+    async hasNewNotification() {
+        const response = await api.get('/notifications/has-notifications');
+        return response.data;
+    }
+    
+    async read(): Promise<void> {
+        const response = await api.post('/notifications/read');
+        return response.data;
+    }
 }
 
 export default new NotificationsService();
