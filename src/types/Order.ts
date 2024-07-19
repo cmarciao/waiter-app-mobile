@@ -10,6 +10,7 @@ export type Order = {
     orderState: string;
     total: number;
     createdAt: Date;
+    finishedAt?: Date;
     totalProducts: number;
     products: ProductOrder[];
 }

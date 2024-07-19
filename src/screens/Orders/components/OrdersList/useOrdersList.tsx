@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { OrderState } from "@/types/Order";
 import { useOrders } from "@hooks/useOrders";
 import { useWebsocket } from "@hooks/useWebsocket";
+import { useFocusEffect } from "@react-navigation/native";
 
 export function useOrdersList() {
+    const isFirstRender = useRef(true);
     const queryClient = useQueryClient();
     const {
         orders,
@@ -24,6 +26,17 @@ export function useOrdersList() {
 			unsubscribe('orders@update');
 		};
 	}, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            if(isFirstRender.current) {
+                isFirstRender.current = false;
+                return;
+            }
+            
+            queryClient.invalidateQueries({ queryKey: ['orders'] });
+        }, [])
+    );
    
     const inProgressOrders = orders.filter((order) => order.orderState !== OrderState.HISTORIC);
     const historicOrders = orders.filter((order) => order.orderState === OrderState.HISTORIC);

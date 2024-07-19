@@ -1,25 +1,16 @@
-import { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-import { sleep } from "@/utils/sleep";
 
 import { Text } from "@/components/Text";
 import { AnimatedLoading } from "@/components/AnimatedLoading";
 
 import { Container, Subtitle, Title } from "./styles";
+import { useLoading } from "./useLoading";
 
 type LoadingProps = NativeStackScreenProps<{}>;
 
 export function Loading({ navigation }: LoadingProps) {
-    useEffect(() => {
-        async function mockedLoad() {
-            await sleep(1000 * 3);
-            navigation.replace('home-tab' as never, undefined as never);
-        }
-
-        mockedLoad();
-    }, [])
+    useLoading({navigation})
 
     return (
         <Container>

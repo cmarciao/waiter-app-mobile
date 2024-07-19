@@ -60,8 +60,14 @@ export function OrderItem({ title, ordersList }: OrderItemProps) {
                                         alignItems: 'center',
                                         gap: 6
                                     }}
+                                    size={14}
+                                    weight="500"
                                 >
                                     {formatOrderStateToOrderMessage(item.orderState)}
+
+                                    {item.finishedAt && (
+                                        ` em ${new Date(item.finishedAt).toLocaleDateString()}`
+                                    )}        
                                 </Text>
                             </View>
                         </View>

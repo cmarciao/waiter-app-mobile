@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-
-import NotificationsService from "@/services/NotificationsService";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useOrder } from "@/hooks/useOrder";
 import { useWebsocket } from "@/hooks/useWebsocket";
+import { useHasNotifications } from "@/hooks/useHasNotifications";
 
 export function useHeader() {
-    const queryClient = useQueryClient();
     const { signOut } = useAuth();
     const { navigate } = useNavigation();
     const [hasNewNotifications, setHasNewNotifications] = useState(false);
@@ -17,14 +14,11 @@ export function useHeader() {
     const { subscribe, unsubscribe } = useWebsocket();
     const { table, handleClearOrder, isSavingOrder } = useOrder();
     
-    const { data: hasNotifications, refetch} = useQuery({
-        queryKey: ['has-notifications'],
-        queryFn: NotificationsService.hasNewNotification
-    });
+    const { hasNotifications, loadHasNotifications} = useHasNotifications();
 
     useFocusEffect(
         useCallback(() => {
-            refetch();
+            loadHasNotifications();
             
             subscribe('orders@update', () => {
                 setHasNewNotifications(true);
@@ -34,7 +28,7 @@ export function useHeader() {
                 unsubscribe('orders@update');
           };
         }, [])
-      );
+    );
 
     useEffect(() => {
         setHasNewNotifications(hasNotifications?.hasNotifications || false)

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useOrder } from "@hooks/useOrder";
 import { useProducts } from "@hooks/useProducts";
 import { useCategories } from "@hooks/useCategories";
+import { useFocusEffect } from "@react-navigation/native";
 
 export function useHome() {
+    const isFirstRender = useRef(true);
     const queryClient = useQueryClient();
     const [selectedCatergoryId, setSelectedCatergoryId] = useState("");
     
@@ -27,6 +29,18 @@ export function useHome() {
     useEffect(() => {
         queryClient.invalidateQueries({ queryKey: ['products'] });
     }, [selectedCatergoryId]);
+
+    useFocusEffect(
+        useCallback(() => {
+            if(isFirstRender.current) {
+                isFirstRender.current = false;
+                return;
+            }
+
+            refetchProducts();
+            refetchCategories();
+        }, [])
+    );
 
     function handleSelectCategory(categoryId: string) {
         const id = categoryId === selectedCatergoryId ? '' : categoryId;
