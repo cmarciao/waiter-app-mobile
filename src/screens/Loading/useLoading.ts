@@ -9,25 +9,32 @@ import { useHasNotifications } from "@/hooks/useHasNotifications";
 type LoadingProps = Omit<NativeStackScreenProps<{}>, 'route'>;
 
 export function useLoading({ navigation }: LoadingProps) {
-    const { isLoadingOrders } = useOrders();
-    const { isLoadingProducts } = useProducts();
-    const { isLoadingCategories } = useCategories();
-    const { isLoadingHasNotifications } = useHasNotifications();
+    const { isFetchingOrders } = useOrders();
+    const { isFetchingProducts } = useProducts();
+    const { isFetchingCategories } = useCategories();
+    const { isFetchingHasNotifications } = useHasNotifications();
 
     useEffect(() => {
+        console.log({
+            isFetchingCategories,
+            isFetchingProducts,
+            isFetchingHasNotifications,
+            isFetchingOrders,
+        });
+
         if(
-            !isLoadingCategories &&
-            !isLoadingProducts &&
-            !isLoadingHasNotifications &&
-            !isLoadingOrders
+            !isFetchingCategories &&
+            !isFetchingProducts &&
+            !isFetchingHasNotifications &&
+            !isFetchingOrders
         ) {
             navigation.replace('home-tab' as never, undefined as never);
         }
 
     }, [
-        isLoadingCategories,
-        isLoadingProducts,
-        isLoadingHasNotifications,
-        isLoadingOrders
+        isFetchingCategories,
+        isFetchingProducts,
+        isFetchingHasNotifications,
+        isFetchingOrders
     ]);
 }

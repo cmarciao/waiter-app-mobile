@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import CategoriesService from "../services/CategoriesService";
 
 export function useCategories() {
-    const {data, isLoading, isError, refetch} = useQuery({
+    const {data, isFetching, isLoading, isError, refetch} = useQuery({
         queryKey: ['categories'],
         queryFn: CategoriesService.listAll
     });
@@ -11,6 +11,7 @@ export function useCategories() {
         categories: data || [],
         refetchCategories: refetch,
         isLoadingCategories: isLoading,
+        isFetchingCategories: isFetching,
         isLoadingCategoriesError: isError
     };
 }
