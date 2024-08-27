@@ -11,9 +11,9 @@ class NotificationsService {
         const response = await api.get('/notifications/has-notifications');
         return response.data;
     }
-    
+
     async read(): Promise<void> {
-        const response = await api.post('/notifications/read');
+        const response = await api.patch('/notifications/read');
         return response.data;
     }
 }
