@@ -3,6 +3,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { Text } from "@components/Text";
 import { Button } from "@components/Button";
 import { NotificationIcon } from "@components/Icons/NotificationIcons";
+import { SignOutModal } from "../SignOutModal";
 
 import { useHeader } from "./useHeader";
 
@@ -22,9 +23,12 @@ export function Header() {
         table,
         signOut,
         isSavingOrder,
+        isSignOutModalOpen,
         hasNewNotifications,
         handleNavigateToNotificationsScreen,
         handleClearOrder,
+        handleOpenSignOutModal,
+        handleCloseSignOutModal
     } = useHeader();
 
     return (
@@ -47,7 +51,7 @@ export function Header() {
                                 )}
                             </ActionButton>
 
-                            <ActionButton onPress={signOut}>
+                            <ActionButton onPress={handleOpenSignOutModal}>
                                 <SimpleLineIcons name="logout" color="#333" size={24} />
                             </ActionButton>
                         </ActionsContainer>
@@ -62,7 +66,8 @@ export function Header() {
                             onPress={handleClearOrder}
                             disabled={isSavingOrder}
                         >
-                            cancelar produto</Button>
+                            cancelar produto
+                        </Button>
                     </>
                 )}
             </HeaderContainer>
@@ -74,6 +79,12 @@ export function Header() {
                     </Text>
                 </Table>
             )}
+
+            <SignOutModal
+                isOpen={isSignOutModalOpen}
+                onClose={handleCloseSignOutModal}
+                onSignOut={signOut}
+            />
         </Container>
     )
 }

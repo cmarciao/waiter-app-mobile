@@ -10,20 +10,21 @@ export function useHeader() {
     const { signOut } = useAuth();
     const { navigate } = useNavigation();
     const [hasNewNotifications, setHasNewNotifications] = useState(false);
-    
+    const [isSignOutModalOpen, setIsSignOutModalOpen] = useState(false);
+
     const { subscribe, unsubscribe } = useWebsocket();
     const { table, handleClearOrder, isSavingOrder } = useOrder();
-    
+
     const { hasNotifications, loadHasNotifications} = useHasNotifications();
 
     useFocusEffect(
         useCallback(() => {
             loadHasNotifications();
-            
+
             subscribe('orders@update', () => {
                 setHasNewNotifications(true);
             });
-            
+
             return () => {
                 unsubscribe('orders@update');
           };
@@ -39,12 +40,23 @@ export function useHeader() {
         setHasNewNotifications(false);
     }
 
+    function handleOpenSignOutModal() {
+        setIsSignOutModalOpen(true);
+    }
+
+    function handleCloseSignOutModal() {
+        setIsSignOutModalOpen(false);
+    }
+
     return {
         table,
         signOut,
         isSavingOrder,
+        isSignOutModalOpen,
         hasNewNotifications,
         handleNavigateToNotificationsScreen,
         handleClearOrder,
+        handleOpenSignOutModal,
+        handleCloseSignOutModal
     }
 }
