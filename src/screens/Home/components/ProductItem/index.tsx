@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Image, Pressable } from "react-native";
 
 import { useOrder } from "@hooks/useOrder";
@@ -8,28 +7,22 @@ import { AddIcon } from "@components/Icons/AddIcon";
 import { Product } from "@/types/Product";
 import { formatPrice } from "@utils/format-utils";
 
-import { ProductModal } from "../ProductModal";
 import { Container, FooterInformations, Informations } from "./styles";
 
 type ProductItemProps = {
     product: Product;
+    onSelectProduct: (product: Product) => void;
 }
 
-export function ProductItem({ product }: ProductItemProps) {
+export function ProductItem({ product, onSelectProduct }: ProductItemProps) {
     const { handleAddToCart } = useOrder();
 
-    const [isProductInformationsModalOpen, setIsProductInformationsModalOpen] = useState(false);
-
-    function handleOpenProductInformationsModal() {
-        setIsProductInformationsModalOpen(true);
-    }
-
-    function handleCloseProductInformationsModal() {
-        setIsProductInformationsModalOpen(false);
+    function handleSelectProduct() {
+        onSelectProduct(product);
     }
 
     return (
-        <Container onPress={handleOpenProductInformationsModal}>
+        <Container onPress={handleSelectProduct}>
             <Image
                 style={{
                     width: 132,
@@ -50,12 +43,6 @@ export function ProductItem({ product }: ProductItemProps) {
                     </Pressable>
                 </FooterInformations>
             </Informations>
-
-            <ProductModal
-                id={product.id}
-                isOpen={isProductInformationsModalOpen}
-                onCloseModal={handleCloseProductInformationsModal}
-            />
         </Container>
     )
 }

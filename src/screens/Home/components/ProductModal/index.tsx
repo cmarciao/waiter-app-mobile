@@ -17,7 +17,7 @@ type ProductModalProps = {
     onCloseModal: () => void;
 }
 
-export function ProductModal({ id, isOpen, onCloseModal }: ProductModalProps) {
+export function ViewProductModal({ id, isOpen, onCloseModal }: ProductModalProps) {
     const { product } = useProductById(id);
     const { handleAddToCart } = useOrder();
 

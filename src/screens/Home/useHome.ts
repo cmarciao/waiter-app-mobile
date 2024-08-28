@@ -10,7 +10,7 @@ export function useHome() {
     const isFirstRender = useRef(true);
     const queryClient = useQueryClient();
     const [selectedCatergoryId, setSelectedCatergoryId] = useState("");
-    
+
     const {
         products,
         refetchProducts,

@@ -15,13 +15,6 @@ export function useLoading({ navigation }: LoadingProps) {
     const { isFetchingHasNotifications } = useHasNotifications();
 
     useEffect(() => {
-        console.log({
-            isFetchingCategories,
-            isFetchingProducts,
-            isFetchingHasNotifications,
-            isFetchingOrders,
-        });
-
         if(
             !isFetchingCategories &&
             !isFetchingProducts &&
